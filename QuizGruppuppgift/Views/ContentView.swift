@@ -18,6 +18,7 @@ struct ContentView: View {
     let numberOfPlayers = ["1","2","3","4"]
     let difficulty = ["Easy","Medium","Hard"]
     
+    @State var playerViewIsPresented = false
     
     var body: some View {
         ZStack{
@@ -96,7 +97,7 @@ struct ContentView: View {
                 
                 HStack{
                     Button(action: {
-                        
+                        playerViewIsPresented.toggle()
                     }) {
                         Text("Fortsätt")
                             .font(.system(size: 16, weight: .bold))
@@ -106,9 +107,12 @@ struct ContentView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .foregroundColor(Color.offwhite)
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                
                             )
                     }
-                    
+                    .sheet(isPresented: $playerViewIsPresented){
+                        PlayerUpdateView()
+                    }
                     Button(action: {
                         
                     }) {
