@@ -9,14 +9,11 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @ObservedObject var viewModel = ViewModel()
     
     @State var selectionCategory = ""
-    @State var selectionNumberOfPlayers = ""
+    @State var selectionNumberOfPlayers = 1
     @State var selectionDifficulty = ""
-    
-    let categories = ["Kategori1","Kategori2","Kategori3","Kategori4"]
-    let numberOfPlayers = ["1","2","3","4"]
-    let difficulty = ["Easy","Medium","Hard"]
     
     
     var body: some View {
@@ -38,31 +35,26 @@ struct ContentView: View {
                 Text("Välj Kategori")
                     .font(.headline)
                 Picker("Kategori", selection: $selectionCategory){
-                    ForEach(categories, id: \.self){
-                        Text($0)
-                        
+                    ForEach(viewModel.game) { game in
+                        Text("Kategori: \(game.category ?? "")")
                     }
                 }
-                
-                
+       
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
                 .frame(width: 150, height: 40)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color.offwhite)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                    
-                )
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2))
                 
                 
                 
                 Text("Välj Antal Spelare")
                     .font(.headline)
-                Picker("Antal spelare", selection: $selectionNumberOfPlayers){
-                    ForEach(numberOfPlayers, id: \.self){
-                        Text($0)
-                        
+                Picker("Antal Spelare", selection: $selectionNumberOfPlayers){
+                    ForEach(viewModel.game) { game in
+                        Text("Antal Spelare: \(game.playerAmount)")
                     }
                 }
                 .font(.system(size: 16, weight: .bold))
@@ -76,12 +68,12 @@ struct ContentView: View {
                 
                 Text("Välj Svårhetsgrad")
                     .font(.headline)
-                Picker("Svårhetsgrad", selection: $selectionDifficulty){
-                    ForEach(difficulty, id: \.self){
-                        Text($0)
-                        
+                Picker("Svårhetsgrad", selection: $selectionDifficulty) {
+                    ForEach(viewModel.game) { game in
+                        Text("Svårhetsgrad: \(game.difficulty ?? "")")
                     }
                 }
+
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
                 .frame(width: 150, height: 40)
