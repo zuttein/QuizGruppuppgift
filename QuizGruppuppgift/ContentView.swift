@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct ContentView: View {
+    
+    @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
     
     @State var selectionCategory = ""
@@ -35,14 +37,14 @@ struct ContentView: View {
                 Text("Välj Kategori")
                     .font(.headline)
                 Picker("Kategori", selection: $selectionCategory){
-                    ForEach(viewModel.game) { game in
-                        Text("Kategori: \(game.category ?? "")")
+                    ForEach(dataController.category, id: \.self) { category in
+                        Text(category)
                     }
                 }
        
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
-                .frame(width: 150, height: 40)
+                .pickerStyle(MenuPickerStyle())
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color.offwhite)
@@ -50,16 +52,12 @@ struct ContentView: View {
                 
                 
                 
-                Text("Välj Antal Spelare")
+                Text("Antal Spelare \(selectionNumberOfPlayers)")
                     .font(.headline)
-                Picker("Antal Spelare", selection: $selectionNumberOfPlayers){
-                    ForEach(viewModel.game) { game in
-                        Text("Antal Spelare: \(game.playerAmount)")
-                    }
-                }
+                Stepper("Add players", value: $selectionNumberOfPlayers, in: 1...10)
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
-                .frame(width: 150, height: 40)
+                .frame(height: 40)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color.offwhite)
@@ -68,15 +66,15 @@ struct ContentView: View {
                 
                 Text("Välj Svårhetsgrad")
                     .font(.headline)
-                Picker("Svårhetsgrad", selection: $selectionDifficulty) {
-                    ForEach(viewModel.game) { game in
-                        Text("Svårhetsgrad: \(game.difficulty ?? "")")
+                Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
+                    ForEach(dataController.difficulty, id: \.self) { difficulty in
+                        Text(difficulty)
                     }
-                }
+                }.pickerStyle(SegmentedPickerStyle())
 
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
-                .frame(width: 150, height: 40)
+                .frame(height: 40)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color.offwhite)
@@ -88,7 +86,12 @@ struct ContentView: View {
                 
                 HStack{
                     Button(action: {
-                        
+                        print("pressed")
+                        Task {
+                            await dataController.fetchData()
+                            print("data hämtad")
+                        }
+                       
                     }) {
                         Text("Fortsätt")
                             .font(.system(size: 16, weight: .bold))
@@ -102,7 +105,9 @@ struct ContentView: View {
                     }
                     
                     Button(action: {
-                        
+                        for question in dataController.questions {
+                            print(question.question)
+                        }
                     }) {
                         Text("Highscore")
                             .font(.system(size: 16, weight: .bold))
@@ -119,6 +124,7 @@ struct ContentView: View {
             }
             
         }
+        .padding(.horizontal, 30)
         
         
     }
