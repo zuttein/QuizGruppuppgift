@@ -3,9 +3,9 @@
     <entity name="GameScore" representedClassName="GameScore" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PlayerScore" inverseName="gameScore" inverseEntity="PlayerScore"/>
+        <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Player" inverseName="gameScore" inverseEntity="Player"/>
     </entity>
-    <entity name="PlayerScore" representedClassName="PlayerScore" syncable="YES" codeGenerationType="class">
+    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
         <attribute name="playerName" optional="YES" attributeType="String"/>
         <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
