@@ -16,7 +16,7 @@ struct ScoreboardView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text("Resultattavla")
+                Text("Results")
                     .font(.title)
 
                 List {
@@ -25,10 +25,9 @@ struct ScoreboardView: View {
                             Text("Timestamp: \(gameScore.timestamp ?? Date())")
                             Text("Category: \(gameScore.category ?? "")")
                             
-                            //                            Behöver justeras för att inte skapa errors:
-                            //                            ForEach(Array(gameScore.playerScores), id: \.self) { playerScore in
-                            //                                Text("Player Name: \(playerScore.name ?? "") - Score: \(playerScore.score)")
-                            //                            }
+//                            ForEach(Array(arrayLiteral: gameScore.playerScores), id: \.self) { playerScore in
+//                                Text("Player Name: \(playerScore.name ?? "") - Score: \(playerScore.score)")
+                            }
                         }
                     }
                 }
@@ -37,7 +36,7 @@ struct ScoreboardView: View {
                     Button(action: {
                         
                     }) {
-                        Text("Tillbaka")
+                        Text("Back")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.black)
                             .frame(width: 150, height: 40)
@@ -49,7 +48,7 @@ struct ScoreboardView: View {
                     }
                     
                 }
-            }
+            
  
     }
 }
