@@ -20,6 +20,7 @@
 		82AD60402B8E2C1D008D5807 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AD603F2B8E2C1D008D5807 /* Persistence.swift */; };
 		82AD60432B8E2C9F008D5807 /* QuizzAppCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AD60412B8E2C9F008D5807 /* QuizzAppCoreData.xcdatamodeld */; };
 		82AD60452B8E309E008D5807 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AD60442B8E309E008D5807 /* ViewModel.swift */; };
+		DF3EBCBC2B90680000398AE6 /* PlayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		82AD603F2B8E2C1D008D5807 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		82AD60422B8E2C9F008D5807 /* QuizzAppCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuizzAppCoreData.xcdatamodel; sourceTree = "<group>"; };
 		82AD60442B8E309E008D5807 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FE2B8CCD6A001D4662 /* Preview Content */,
 				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
+				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
 			);
 			path = QuizGruppuppgift;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				6F58A7FB2B8CCD68001D4662 /* ContentView.swift in Sources */,
 				7CF7CBB52B8F6796002FB912 /* APIError.swift in Sources */,
 				82AD60402B8E2C1D008D5807 /* Persistence.swift in Sources */,
+				DF3EBCBC2B90680000398AE6 /* PlayerSetupView.swift in Sources */,
 				7CF7CBB82B8F689D002FB912 /* DataController.swift in Sources */,
 				82AD603E2B8E2A85008D5807 /* ScoreboardView.swift in Sources */,
 				7CF7CBB32B8F678A002FB912 /* ApiService.swift in Sources */,
