@@ -75,14 +75,12 @@
 				82AD60442B8E309E008D5807 /* ViewModel.swift */,
 				82AD603F2B8E2C1D008D5807 /* Persistence.swift */,
 				6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */,
-				6F58A7FA2B8CCD68001D4662 /* ContentView.swift */,
+				6F58A80F2B9085E1001D4662 /* Views */,
 				7CF7CBB62B8F67F7002FB912 /* ViewModels */,
 				7CF7CBB12B8F6773002FB912 /* APIService */,
 				7CF7CBAC2B8F66F2002FB912 /* Models */,
 				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FE2B8CCD6A001D4662 /* Preview Content */,
-				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
-				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
 			);
 			path = QuizGruppuppgift;
 			sourceTree = "<group>";
@@ -93,6 +91,16 @@
 				6F58A7FF2B8CCD6A001D4662 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6F58A80F2B9085E1001D4662 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F58A7FA2B8CCD68001D4662 /* ContentView.swift */,
+				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
+				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7CF7CBAC2B8F66F2002FB912 /* Models */ = {
