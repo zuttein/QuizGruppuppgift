@@ -8,13 +8,13 @@
 import SwiftUI
 
 
-struct ContentView: View {
+struct StartView: View {
     
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
     
     @State var selectionCategory = ""
-    @State var selectionNumberOfPlayers = 1
+   // @State var selectionNumberOfPlayers = 1
     @State var selectionDifficulty = ""
     
     @State var playerViewIsPresented = false
@@ -53,9 +53,9 @@ struct ContentView: View {
                 
                 
                 
-                Text("Antal Spelare \(selectionNumberOfPlayers)")
+                Text("Antal Spelare \(viewModel.selectionNumberOfPlayers)")
                     .font(.headline)
-                Stepper("Add players", value: $selectionNumberOfPlayers, in: 1...10)
+                Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
                 .font(.system(size: 16, weight: .bold))
                 .accentColor(.black)
                 .frame(height: 40)
@@ -89,10 +89,10 @@ struct ContentView: View {
                     Button(action: {
                         print("pressed")
                         playerViewIsPresented.toggle()
-                        Task {
-                            await dataController.fetchData()
+                        /*Task {
+                            await dataController.fetchData(url: <#String#>)
                             print("data hämtad")
-                        }
+                        }*/
                        
                     }) {
                         Text("Fortsätt")
@@ -138,7 +138,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    StartView()
 }
 
 

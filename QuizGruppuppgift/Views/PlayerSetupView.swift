@@ -11,6 +11,7 @@ struct PlayerSetupView: View {
     
     @State var selectionNumberOfPlayers = ""
     @ObservedObject var viewModel = ViewModel()
+    @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
     @State var difficulty: String = "Katastrof"
     @State var playerNames:[String]=[]

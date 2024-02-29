@@ -10,6 +10,7 @@ import SwiftUI
 struct ScoreboardView: View {
     @ObservedObject var viewModel = ViewModel()
     
+    
     var body: some View {
         ZStack{
             Color.offwhite
@@ -20,7 +21,7 @@ struct ScoreboardView: View {
                     .font(.title)
 
                 List {
-                    ForEach(viewModel.gameScores) { gameScore in
+                    /*ForEach(viewModel.gameScores) { gameScore in
                         VStack(alignment: .leading) {
                             Text("Timestamp: \(gameScore.timestamp ?? Date())")
                             Text("Category: \(gameScore.category ?? "")")
@@ -28,7 +29,7 @@ struct ScoreboardView: View {
 //                            ForEach(Array(arrayLiteral: gameScore.playerScores), id: \.self) { playerScore in
 //                                Text("Player Name: \(playerScore.name ?? "") - Score: \(playerScore.score)")
                             }
-                        }
+                        }*/
                     }
                 }
                 
