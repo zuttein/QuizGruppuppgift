@@ -17,7 +17,8 @@ struct ContentView: View {
     @State var selectionNumberOfPlayers = 1
     @State var selectionDifficulty = ""
     
-    
+    @State var playerViewIsPresented = false
+
     var body: some View {
         ZStack{
             Color.offwhite
@@ -87,6 +88,7 @@ struct ContentView: View {
                 HStack{
                     Button(action: {
                         print("pressed")
+                        playerViewIsPresented.toggle()
                         Task {
                             await dataController.fetchData()
                             print("data hämtad")
@@ -103,6 +105,9 @@ struct ContentView: View {
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }
+                .sheet(isPresented: $playerViewIsPresented){
+                    PlayerSetupView()
+                }
                     
                     Button(action: {
                         for question in dataController.questions {
