@@ -132,7 +132,7 @@ struct ContentView: View {
         .padding(.horizontal, 30)
         
         
-//Testkommentar
+
         
     }
 }
@@ -141,5 +141,4 @@ struct ContentView: View {
     ContentView()
 }
 
-//Testing
-//Test test
+
