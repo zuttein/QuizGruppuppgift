@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct QuizGruppuppgiftApp: App {
     var body: some Scene {
         WindowGroup {
             StartView()
-        }
+                
+        }.modelContainer(for: Game.self)
+        .modelContainer(for: Player.self)
     }
 }

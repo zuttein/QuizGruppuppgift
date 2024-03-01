@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class Game {
+    var id: UUID
     var date: Date
-    var player: [Player]
+    var players: [Player]
     
-    init(date: Date, player: [Player]) {
+    init(id: UUID = UUID(), date: Date, players: [Player]) {
+        self.id = id
         self.date = date
-        self.player = player
+        self.players = players
     }
 }
