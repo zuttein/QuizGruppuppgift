@@ -10,11 +10,23 @@ import SwiftData
 
 @main
 struct QuizGruppuppgiftApp: App {
+    
+    let container:ModelContainer
+    
+    init() {
+        do {
+            container = try ModelContainer(for: Game.self, Player.self, migrationPlan: nil)
+        } catch {
+            fatalError("Failed to initialize modelcontainer")
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
-            StartView()
+            GameView()
+            
                 
-        }.modelContainer(for: Game.self)
-        .modelContainer(for: Player.self)
+        }.modelContainer(container)
+        
     }
 }

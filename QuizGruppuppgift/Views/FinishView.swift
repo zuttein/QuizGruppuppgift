@@ -10,17 +10,53 @@ import SwiftData
 
 struct FinishView: View {
     
-    @Environment(\.modelContext) var modelContext
-    
-    @State var game: Game? = nil
+    @Bindable var game: Game
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            VStack{
+                Text(game.date.extractDate(to: .date))
+                    .font(.title)
+                    .fontWeight(.black)
+                Text(game.date.extractDate(to: .hour))
+                    .font(.headline)
+                    .fontWeight(.black)
+                   
+            }.padding(.vertical)
+            ForEach(game.players) { player in
+                Spacer(minLength: 0)
+                HStack{
+                    Text(player.name)
+                        .fontWeight(.bold)
+                    Spacer()
+                    Text("\(player.score)")
+                        .fontWeight(.bold)
+                    
+                }.frame(width: 250, height: 35)
+                Spacer(minLength: 0)
+            }
+            
+            Spacer()
+                
+        }.frame(width: 337.5, height: 540)
+            .background(Color.green)
     }
     
     
 }
 
+
+
 #Preview {
-    FinishView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Game.self, Player.self,migrationPlan: nil, configurations: config)
+        let example: Game = Game(date: Date(), players: [])
+        return FinishView( game: example)
+            .modelContainer(container)
+    } catch {
+        fatalError("Failed to create model container.")
+    }
 }
+    
+

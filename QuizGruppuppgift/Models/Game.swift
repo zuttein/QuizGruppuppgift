@@ -13,10 +13,12 @@ class Game {
     var id: UUID
     var date: Date
     var players: [Player]
+    //var category: String
     
-    init(id: UUID = UUID(), date: Date, players: [Player]) {
+    init(id: UUID = UUID(), date: Date, players: [Player] ) {
         self.id = id
         self.date = date
         self.players = players
+        
     }
 }
