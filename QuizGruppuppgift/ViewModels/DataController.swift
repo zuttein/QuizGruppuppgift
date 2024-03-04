@@ -85,7 +85,7 @@ class DataController: ObservableObject {
             default:
                 categoryNumbers = [10, 11, 12, 13, 14, 15, 16, 26, 28, 31, 32]
             }
-        
+       
             
             //                // Fetch questions for each category
             // Fungerade inte p.g.a. att anrop till samma kategori strax efter varandra ger samma fråga om och om igen.

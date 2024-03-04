@@ -6,9 +6,50 @@
 //
 
 import SwiftUI
+import SwiftData
+
+
+/*
+struct ScoreboardView: View {
+    
+    
+    @Query var games: [Game]
+    
+    var body: some View {
+        NavigationStack{
+            List{
+                ForEach(games) { game in
+                    NavigationLink {
+                        FinishView(game: game)
+                    } label: {
+                        VStack(alignment: .leading){
+                            Text(game.date.extractDate(to: .date)
+                                 + " "
+                                 + game.date.extractDate(to: .hour))
+                                .fontWeight(.black)
+                            HStack {
+                                Text("Participants: \(game.players.count)")
+                                    .font(.subheadline)
+                                Text("Winner: \(game.players.first?.name ?? "")")
+                                    .font(.headline)
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    ScoreboardView()
+}
+
+*/
 
 struct ScoreboardView: View {
-    @ObservedObject var viewModel = ViewModel()
+    @Query var games: [Game]
     
     
     var body: some View {
@@ -19,38 +60,38 @@ struct ScoreboardView: View {
             VStack {
                 Text("Results")
                     .font(.title)
-
+                
                 List {
-                    /*ForEach(viewModel.gameScores) { gameScore in
+                    ForEach(games) { game in
                         VStack(alignment: .leading) {
-                            Text("Timestamp: \(gameScore.timestamp ?? Date())")
-                            Text("Category: \(gameScore.category ?? "")")
+                            Text("Timestamp: \(game.date.extractDate(to: .dateAndHour))")
+                            Text("Category:)")
                             
-//                            ForEach(Array(arrayLiteral: gameScore.playerScores), id: \.self) { playerScore in
-//                                Text("Player Name: \(playerScore.name ?? "") - Score: \(playerScore.score)")
+                            ForEach(game.players, id: \.self) { player in
+                                Text("Player Name: \(player.name ?? "") - Score: \(player.score)")
                             }
-                        }*/
+                        }
                     }
                 }
                 
                 Spacer()
-                    Button(action: {
-                        
-                    }) {
-                        Text("Back")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color.black)
-                            .frame(width: 150, height: 40)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            )
-                    }
+                Button(action: {
                     
+                }) {
+                    Text("Back")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color.black)
+                        .frame(width: 150, height: 40)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.offwhite)
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        )
                 }
+                
+            }
             
- 
+        }
     }
 }
 

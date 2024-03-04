@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PlayerSetupView: View {
-    
-    @State var selectionNumberOfPlayers = ""
+    @Binding var amountOfPlayers: Int
+//    @State var selectionNumberOfPlayers = ""
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
@@ -29,12 +29,12 @@ struct PlayerSetupView: View {
                 
                 
                 List{
-                    ForEach(0..<playerNames.count, id: \.self) {index in
-                        TextField("Player\(index + 1)",text: $playerNames[index])
-                            .padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                    }
+                    ForEach(0..<amountOfPlayers, id: \.self) { index in
+                                    TextField("Player \(index + 1)", text: .constant(""))
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .padding()
+                                }
+
                     
                     
                 }
@@ -76,5 +76,5 @@ struct PlayerSetupView: View {
     
 
 #Preview {
-    PlayerSetupView()
+    PlayerSetupView(amountOfPlayers: .constant(5))
 }
