@@ -8,14 +8,38 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.modelContext) var modelContext
+    @ObservedObject var viewModel = ViewModel()
+    
     @State var questionAnswer: Bool = false
     
+    
+    
     var body: some View {
-        VStack {
+        NavigationStack {
             
-            QuestionView()
-            AnswerView()
+            ScoreboardView()
+                .toolbar{
+                    Button {
+                        saveGame()
+                        
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+           
             
+        }
+    }
+    
+    // only when game ends...
+    func saveGame(){
+        viewModel.gameToSave()
+        modelContext.insert(viewModel.currentGame)
+        sleep(UInt32(0.2))
+        withAnimation {
+            viewModel.gameEnded.toggle()
         }
     }
 }

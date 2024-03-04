@@ -42,7 +42,7 @@ class DataController: ObservableObject {
         do{
             let apiService = APIService(urlString: url)
             guard let data : Response = try await apiService.getJSON() else {return}
-            self.questions = data.results
+            self.questions.append(contentsOf: data.results)
             
         } catch {
             print("=")
