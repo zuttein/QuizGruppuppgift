@@ -14,6 +14,7 @@ class ViewModel: ObservableObject {
     @Published var currentGame: Game = Game(date: Date(), players: [])
     @Published var gameEnded = false
 
+
     //@Published var gameScores: [GameScore] = []
     //@Published var game: [Game] = []
     
@@ -23,24 +24,25 @@ class ViewModel: ObservableObject {
         self.getGameplay()
     }
     
+    
     func getScoreboard() {
         /*
-        let request = NSFetchRequest<GameScore>(entityName: "GameScore")
-        do {
-            gameScores = try container.viewContext.fetch(request)
-        } catch let error {
-            print("Error fetching game scores: \(error)")
-        }*/
+         let request = NSFetchRequest<GameScore>(entityName: "GameScore")
+         do {
+         gameScores = try container.viewContext.fetch(request)
+         } catch let error {
+         print("Error fetching game scores: \(error)")
+         }*/
     }
     
     func getGameplay(){
         /*
-        let request = NSFetchRequest<Game>(entityName: "Game")
-        do {
-            game = try container.viewContext.fetch(request)
-        } catch let error {
-            print("Error fetching game scores: \(error)")
-        }*/
+         let request = NSFetchRequest<Game>(entityName: "Game")
+         do {
+         game = try container.viewContext.fetch(request)
+         } catch let error {
+         print("Error fetching game scores: \(error)")
+         }*/
         
     }
     
