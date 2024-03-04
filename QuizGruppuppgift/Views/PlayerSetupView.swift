@@ -75,6 +75,6 @@ struct PlayerSetupView: View {
     }
     
 
-//#Preview {
-//    PlayerSetupView()
-//}
+#Preview {
+    PlayerSetupView(amountOfPlayers: .constant(5))
+}
