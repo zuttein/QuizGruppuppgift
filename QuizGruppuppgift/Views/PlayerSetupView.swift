@@ -13,7 +13,7 @@ struct PlayerSetupView: View {
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
-    @State var difficulty: String = "Katastrof"
+    @State var difficulty: String = "Hard"
     @State var playerNames:[String]=[]
     let maxPlayers = 10
     var body: some View {
@@ -38,24 +38,24 @@ struct PlayerSetupView: View {
                     
                     
                 }
-                Text("Kategorier")
+                Text("Categories")
                     .font(.system(size: 16, weight: .bold))
                     .accentColor(.black)
                     .frame(width: 100, height: 15)
                 List{
                     Text("Sport")
-                    Text("Mat")
-                    Text("Historia")
+                    Text("-")
+                    Text("-")
                 }.padding(.bottom,125)
                 
                 
-                Text("Svårighetsgrad: \(difficulty) ")
+                Text("Difficulty: \(difficulty) ")
                 
                 
                 Button(action: {
                     
                 }) {
-                    Text("Starta spel")
+                    Text("Start Game")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color.black)
                         .frame(width: 150, height: 40)
