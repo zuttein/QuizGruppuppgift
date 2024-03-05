@@ -65,10 +65,10 @@ struct ScoreboardView: View {
                     ForEach(games) { game in
                         VStack(alignment: .leading) {
                             Text("Timestamp: \(game.date.extractDate(to: .dateAndHour))")
-                            Text("Category:)")
+                            Text("Category: \(game.category)")
                             
                             ForEach(game.players, id: \.self) { player in
-                                Text("Player Name: \(player.name ?? "") - Score: \(player.score)")
+                                Text("Player Name: \(player.name ) - Score: \(player.score)")
                             }
                         }
                     }
