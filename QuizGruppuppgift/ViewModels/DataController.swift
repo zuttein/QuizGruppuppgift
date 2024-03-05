@@ -65,12 +65,12 @@ class DataController: ObservableObject {
         
         // Generate URL based on category and other parameters
         if category == "Mixed" {
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficulty)&type=boolean")
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficulty.lowercased())&type=boolean")
             apiCall(url: url!)
             print(url!)
         } else if category == "General Knowledge" || category == "Sport" {
             let categoryId = category == "General Knowledge" ? "9" : "21"
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty)&type=boolean")
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty.lowercased())&type=boolean")
             apiCall(url: url!)
             print(url!)
         } else {
@@ -109,7 +109,7 @@ class DataController: ObservableObject {
             // Fetch questions for each category
             for (index, categoryNumber) in categoryNumbers.enumerated() {
                 if amountQuestionsPerCategory[index] != 0 {
-                    url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestionsPerCategory[index])&category=\(categoryNumber)&difficulty=\(difficulty)&type=boolean")
+                    url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestionsPerCategory[index])&category=\(categoryNumber)&difficulty=\(difficulty.lowercased())&type=boolean")
                     print(url!)
                     apiCall(url: url!)
                 }

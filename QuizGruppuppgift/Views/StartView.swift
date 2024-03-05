@@ -51,8 +51,6 @@ struct StartView: View {
                         .foregroundColor(Color.offwhite)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2))
                 
-                
-                
                 Text("Antal Spelare \(viewModel.selectionNumberOfPlayers)")
                     .font(.headline)
                 Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
@@ -101,7 +99,7 @@ struct StartView: View {
                                 print("Failed to fetch questions")
                             }
                         }
-
+                        
                         /*Task {
                             await dataController.fetchData(url: <#String#>)
                             print("data hämtad")
