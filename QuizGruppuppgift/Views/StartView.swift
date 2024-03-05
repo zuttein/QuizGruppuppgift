@@ -51,8 +51,6 @@ struct StartView: View {
                         .foregroundColor(Color.offwhite)
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2))
                 
-                
-                
                 Text("Antal Spelare \(viewModel.selectionNumberOfPlayers)")
                     .font(.headline)
                 Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
@@ -88,7 +86,20 @@ struct StartView: View {
                 HStack{
                     Button(action: {
                         print("pressed")
-                        playerViewIsPresented.toggle()
+                        dataController.fetchQuestions(category: selectionCategory, difficulty: selectionDifficulty, amountQuestions: dataController.numberOfQuestions) { questions in
+                            if let questions = questions {
+                                // Successfully fetched questions, do something with them
+                                print("Fetched \(questions.count) questions")
+                                for question in questions {
+                                    print("Question: \(question.question), Answer: \(question.answer)")
+                                }
+                                playerViewIsPresented.toggle()
+                            } else {
+                                // Error occurred while fetching questions
+                                print("Failed to fetch questions")
+                            }
+                        }
+                        
                         /*Task {
                             await dataController.fetchData(url: <#String#>)
                             print("data hämtad")
