@@ -18,6 +18,7 @@ struct StartView: View {
     @State var selectionDifficulty = ""
     
     @State var playerViewIsPresented = false
+    @State var isEditing = false
 
     var body: some View {
         ZStack{
@@ -65,6 +66,19 @@ struct StartView: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                 )
                 
+                Text("Antal Frågor \(dataController.numberOfQuestions)")
+                    .font(.headline)
+                
+                Slider(value: Binding<Double>(
+                            get: { Double(dataController.numberOfQuestions) },
+                            set: { dataController.numberOfQuestions = Int($0) }
+                        ),
+                        in: 1...100,
+                        step: 1
+                    )
+                
+                
+                
                 Text("Välj Svårhetsgrad")
                     .font(.headline)
                 Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
@@ -106,7 +120,7 @@ struct StartView: View {
                             )
                     }
                 .sheet(isPresented: $playerViewIsPresented){
-                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers)
+                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions)
                 }
                     
                     Button(action: {

@@ -9,13 +9,15 @@ import SwiftUI
 
 struct PlayerSetupView: View {
     @Binding var amountOfPlayers: Int
-//    @State var selectionNumberOfPlayers = ""
+    @Binding var amountOfQuestions: Int
+    
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
     @State var difficulty: String = "Katastrof"
-    @State var playerNames:[String]=[]
+    
     let maxPlayers = 10
+    
     var body: some View {
         
         ZStack{
@@ -38,18 +40,30 @@ struct PlayerSetupView: View {
                     
                     
                 }
-                Text("Kategorier")
+             
+                Text("Choosen category")
                     .font(.system(size: 16, weight: .bold))
                     .accentColor(.black)
-                    .frame(width: 100, height: 15)
+                    
                 List{
                     Text("Sport")
-                    Text("Mat")
-                    Text("Historia")
-                }.padding(.bottom,125)
+                }.padding()
                 
                 
-                Text("Svårighetsgrad: \(difficulty) ")
+                HStack {
+                    Text("Difficulty: \(difficulty) ")
+                        .font(.system(size: 16, weight: .bold))
+                    .accentColor(.black)
+                    
+                    Spacer()
+                    Text("Amount of questions: \(String(amountOfQuestions))")
+                        .font(.system(size: 16, weight: .bold))
+                        .accentColor(.black)
+                }
+                .padding()
+                  
+             
+
                 
                 
                 Button(action: {
@@ -76,5 +90,5 @@ struct PlayerSetupView: View {
     
 
 #Preview {
-    PlayerSetupView(amountOfPlayers: .constant(5))
+    PlayerSetupView(amountOfPlayers: .constant(5), amountOfQuestions: .constant(5))
 }
