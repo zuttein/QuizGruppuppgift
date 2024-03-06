@@ -123,7 +123,7 @@ struct StartView: View {
                         }
                         
                         Button(action: {
-                            scoreboardViewIsPresented = true
+                            scoreboardViewIsPresented.toggle()
                         }) {
                             Text("Scoreboard")
                                 .font(.system(size: 16, weight: .bold))
@@ -135,14 +135,14 @@ struct StartView: View {
                                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                 )
                         }
-                        
+                        .sheet(isPresented: $scoreboardViewIsPresented) {
+                            ScoreboardView()
                     }
                 }
                 
             }
             .padding(.horizontal, 30)
-            .sheet(isPresented: $scoreboardViewIsPresented) {
-                ScoreboardView(/* Pass necessary data to HighscoreView */)
+           
                 
             }
             
