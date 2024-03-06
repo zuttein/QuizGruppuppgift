@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct PlayerSetupView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var amountOfPlayers: Int
     @Binding var amountOfQuestions: Int
     @Binding var difficulty: String
     @Binding var selectionCategory: String
+    
+    @State var startViewIsPresented = false
+
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
@@ -29,46 +34,78 @@ struct PlayerSetupView: View {
                     .padding(0)
                 List{
                     ForEach(0..<amountOfPlayers, id: \.self) { index in
-                                    TextField("Player \(index + 1)", text: .constant(""))
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .padding()
-                                }
+                        TextField("Player \(index + 1)", text: .constant(""))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                    }
                 }
-
-                HStack {
-                    Text("Difficulty: \(difficulty) ")
-                        .font(.system(size: 16, weight: .bold))
-                    .accentColor(.black)
+                
+                
+                
+                
+                VStack {
                     
-                    Spacer()
-                    Text("Amount of questions: \(String(amountOfQuestions))")
-                        .font(.system(size: 16, weight: .bold))
+                    Text("Difficulty:")
+                        .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
+                    Text("\(difficulty)")
+                        .font(.system(size: 18, weight: .bold))
+
+                    
+                    Text("Amount of questions)")
+                        .font(.system(size: 20, weight: .bold))
+                        .accentColor(.black)
+                    Text("\(amountOfQuestions)")
+                        .font(.system(size: 16, weight: .bold))
+
+                    Text("Category")
+                        .font(.system(size: 20, weight: .bold))
+                        .accentColor(.black)
+                        .frame(width: 100, height: 15)
+                    
+                    Text("\(selectionCategory)")
+                        .font(.system(size: 16, weight: .bold))
+                        .padding(.bottom)
                 }
                 .padding()
                 
-                Text("Category")
-                    .font(.system(size: 16, weight: .bold))
-                    .accentColor(.black)
-                    .frame(width: 100, height: 15)
-                    Text("\(selectionCategory)")
-                .padding(.bottom,125)
-
-                Button(action: {
-                }) {
-                    Text("Start Game")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.black)
-                        .frame(width: 150, height: 40)
-                        .background(
+              
+                
+                HStack{
+                    Button(action: {
+                    }) {
+                        Text("Start Game")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .frame(width: 150, height: 40)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color.offwhite)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                            )
+                    }
+                    
+                  
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    })
+                            {
+                                                
+                            Text("Back")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .frame(width: 150, height: 40)
+                            .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        )
+                                    .foregroundColor(Color.offwhite)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                                    )
+                                            }
+                                       
+                    
+                    
                 }
             }
-            
-            
         }
       
         }
@@ -81,3 +118,11 @@ struct PlayerSetupView: View {
     PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), difficulty: .constant(("easy")), selectionCategory: .constant("sport"))
 
 }
+
+
+
+
+// .background(
+//RoundedRectangle(cornerRadius: 10)
+//    .foregroundColor(Color.offwhite)
+//    .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)

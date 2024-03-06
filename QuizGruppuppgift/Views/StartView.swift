@@ -35,7 +35,7 @@ struct StartView: View {
                     
                     
 
-                    Text("Antal Frågor \(dataController.numberOfQuestions)")
+                    Text("Amount of questions \(dataController.numberOfQuestions)")
                         .font(.headline)
 
                     Slider(value: Binding<Double>(
