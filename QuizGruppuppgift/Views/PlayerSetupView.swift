@@ -10,7 +10,7 @@ import SwiftUI
 struct PlayerSetupView: View {
     @Binding var amountOfPlayers: Int
     @Binding var amountOfQuestions: Int
-    @Binding var difficulty: String
+    @Binding var selectionDifficulty: String
     @Binding var selectionCategory: String
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
@@ -36,7 +36,7 @@ struct PlayerSetupView: View {
                 }
 
                 HStack {
-                    Text("Difficulty: \(difficulty) ")
+                    Text("Difficulty: \(selectionDifficulty) ")
                         .font(.system(size: 16, weight: .bold))
                     .accentColor(.black)
                     
@@ -78,6 +78,6 @@ struct PlayerSetupView: View {
 
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), difficulty: .constant(("easy")), selectionCategory: .constant("sport"))
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"))
 
 }

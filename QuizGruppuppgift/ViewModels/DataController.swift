@@ -70,9 +70,11 @@ class DataController: ObservableObject {
             url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficultySelection.lowercased())&type=boolean")
         }
         
-        // Bugg in Api returns no questions when calling category 21, 25 or 29 with a difficulty choice, therefore querring for all difficulty levels.
-        else if categorySelection == "Sports" || categorySelection == "Celebrities" || categorySelection == "Comics" {
+        // Bugg in Api returns no questions when calling category 20, 21, 25 or 29 with a difficulty choice, therefore querring for all difficulty levels.
+        else if categorySelection == "Sports" || categorySelection == "Celebrities" || categorySelection == "Comics" || categorySelection == "Mathematics" {
             switch categorySelection {
+            case "Mathematics":
+                categoryId = 20
             case "Sports":
                 categoryId = 21
             case "Art":
@@ -109,8 +111,6 @@ class DataController: ObservableObject {
                 categoryId = 18
             case "Computers":
                 categoryId = 19
-            case "Mathematics":
-                categoryId = 20
             case "Mythology":
                 categoryId = 22
             case "Geography":
