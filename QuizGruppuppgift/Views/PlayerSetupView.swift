@@ -103,6 +103,6 @@ struct PlayerSetupView: View {
 
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),selectionCategory: .constant("sport"),amountOfQuestions: .constant(10))
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionCategory: .constant("sport"))
 
 }
