@@ -39,7 +39,7 @@ struct StartView: View {
                                 get: { Double(dataController.numberOfQuestions) },
                                 set: { dataController.numberOfQuestions = Int($0) }
                             ),
-                            in: 1...100,
+                            in: 1...50,
                             step: 1
                         )
             
