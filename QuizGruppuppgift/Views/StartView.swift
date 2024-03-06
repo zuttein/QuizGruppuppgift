@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct StartView: View {
     
     @ObservedObject var dataController = DataController()
@@ -46,7 +45,8 @@ struct StartView: View {
             
                         Text("Choose category")
                             .font(.headline)
-                    Picker("Kategori", selection: $dataController.categorySelection) {
+
+                    Picker("Category", selection: $dataController.categorySelection) {
                             ForEach(dataController.category, id: \.self) { category in
                                 Text(category)
                             }
@@ -74,7 +74,7 @@ struct StartView: View {
 
                         Text("Choose Difficulty")
                             .font(.headline)
-                        Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
+                        Picker("Difficulty", selection: $dataController.difficultySelection) {
                             ForEach(dataController.difficulty, id: \.self) { difficulty in
                                 Text(difficulty)
                             }
@@ -94,6 +94,7 @@ struct StartView: View {
                         HStack {
                             Button(action: {
                                 print(dataController.categorySelection)
+
                                 dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
                                     if let questions = questions {
                                         // Successfully fetched questions
@@ -136,10 +137,11 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
+
                                             amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $dataController.categorySelection)
                         }
                         
-                    
+
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
                     }
