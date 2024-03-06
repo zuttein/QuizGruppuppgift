@@ -138,7 +138,7 @@ struct StartView: View {
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
 
-                                            amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $dataController.categorySelection)
+                                            amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
                         }
                         
 
