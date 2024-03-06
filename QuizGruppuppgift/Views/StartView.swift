@@ -133,9 +133,7 @@ struct StartView: View {
                             }
                             
                             Button(action: {
-                                for question in dataController.questions {
-                                    print(question.question)
-                                }
+                                scoreboardViewIsPresented.toggle()
                             }) {
                                 Text("Scoreboard")
                                     .font(.system(size: 16, weight: .bold))
@@ -152,6 +150,10 @@ struct StartView: View {
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
                                             amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $selectionCategory)
+                        }
+                    
+                        .sheet(isPresented: $scoreboardViewIsPresented) {
+                            ScoreboardView()
                         }
 
 
