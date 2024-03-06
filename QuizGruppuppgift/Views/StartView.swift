@@ -13,7 +13,7 @@ struct StartView: View {
     @ObservedObject var viewModel = ViewModel()
     
 //    @State var selectionCategory = ""
-    @State var selectionDifficulty = ""
+//    @State var selectionDifficulty = ""
     
     @State var playerViewIsPresented = false
     @State var scoreboardViewIsPresented = false
@@ -106,7 +106,7 @@ struct StartView: View {
                         HStack {
                             Button(action: {
                                 print("pressed")
-                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: selectionDifficulty, amountQuestions: dataController.numberOfQuestions) { questions in
+                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
                                     if let questions = questions {
                                         // Successfully fetched questions
                                         print("Fetched \(questions.count) questions")
@@ -148,7 +148,7 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
-                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$selectionDifficulty, selectionCategory: $dataController.categorySelection)
+                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
                         }
                         
                         
