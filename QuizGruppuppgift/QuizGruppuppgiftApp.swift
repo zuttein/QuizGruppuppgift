@@ -23,9 +23,9 @@ struct QuizGruppuppgiftApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            StartView()
+            StartView()
 //            ScoreboardView()
-  GameView()
+//  GameView()
                 
         }.modelContainer(container)
         

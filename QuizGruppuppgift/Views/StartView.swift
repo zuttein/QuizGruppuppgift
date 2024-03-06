@@ -25,16 +25,10 @@ struct StartView: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    
-                    Text("Hot potato")
-                        .font(.title)
-                    Image("Potatis")
-                        .resizable()
+                    GifReaderView(gifName: "hotpotatologo")
                         .scaledToFit()
-                        .frame(width: 300, height: 300)
                     
                     
-
                     Text("Antal Frågor \(dataController.numberOfQuestions)")
                         .font(.headline)
 
@@ -155,9 +149,13 @@ struct StartView: View {
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
                     }
+                    
                 }
+                
+
             }
-            .padding(.horizontal, 30)   
+            .padding(.horizontal, 30)  
+            .background(Color.offwhite)
                 
             }
             
