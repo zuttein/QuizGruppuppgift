@@ -13,9 +13,6 @@ struct StartView: View {
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
     
-    @State var selectionCategory = ""
-    @State var selectionDifficulty = ""
-    
     @State var playerViewIsPresented = false
     @State var scoreboardViewIsPresented = false
 
@@ -46,20 +43,10 @@ struct StartView: View {
                             in: 1...100,
                             step: 1
                         )
-
-//                    Text("Välj Svårhetsgrad")
-//                        .font(.headline)
-//                    Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
-//                        ForEach(dataController.difficulty, id: \.self) { difficulty in
-//                            Text(difficulty)
-//                        }
-//                    }
-                    
-    
             
                         Text("Choose category")
                             .font(.headline)
-                        Picker("Kategori", selection: $selectionCategory) {
+                    Picker("Kategori", selection: $dataController.categorySelection) {
                             ForEach(dataController.category, id: \.self) { category in
                                 Text(category)
                             }
@@ -106,8 +93,8 @@ struct StartView: View {
                         
                         HStack {
                             Button(action: {
-                                print("pressed")
-                                dataController.fetchQuestions(category: selectionCategory, difficulty: selectionDifficulty, amountQuestions: dataController.numberOfQuestions) { questions in
+                                print(dataController.categorySelection)
+                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
                                     if let questions = questions {
                                         // Successfully fetched questions
                                         print("Fetched \(questions.count) questions")
@@ -149,22 +136,10 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
-                                            amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $selectionCategory)
+                                            amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $dataController.categorySelection)
                         }
                         
-                        Button(action: {
-                            scoreboardViewIsPresented.toggle()
-                        }) {
-                            Text("Scoreboard")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(Color.black)
-                                .frame(width: 150, height: 40)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.offwhite)
-                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                )
-                        }
+                    
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
                     }

@@ -35,6 +35,7 @@ class DataController: ObservableObject {
                     return
                 }
                 
+                
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     if let results = json?["results"] as? [[String: Any]] {
@@ -65,18 +66,29 @@ class DataController: ObservableObject {
         }
         
         // Generate URL based on category and other parameters
-        if category == "Mixed" {
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficulty.lowercased())&type=boolean")
-        } 
+        if categorySelection == "Mixed" {
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficultySelection.lowercased())&type=boolean")
+        }
         
-        // Bugg in Api returns no questions when calling category 21 with a dificulty choice, therefore querring for all difficulty levels.
-        else if category == "Sport" {
-            let categoryId = category == "General Knowledge" ? "9" : "21"
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=21&type=boolean")
-        } 
+        // Bugg in Api returns no questions when calling category 21, 25 or 29 with a difficulty choice, therefore querring for all difficulty levels.
+        else if categorySelection == "Sports" || categorySelection == "Celebrities" || categorySelection == "Comics" {
+            switch categorySelection {
+            case "Sports":
+                categoryId = 21
+            case "Art":
+                categoryId = 25
+            case "Celebrities":
+                categoryId = 26
+            case "Comics":
+                categoryId = 29
+            default:
+                categoryId = 9
+            }
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&type=boolean")
+        }
         
         else {
-            switch category {
+            switch categorySelection {
             case "Books":
                 categoryId = 10
             case "Film":
@@ -125,7 +137,7 @@ class DataController: ObservableObject {
                 categoryId = 9
             }
             
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty.lowercased())&type=boolean")
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficultySelection.lowercased())&type=boolean")
         }
         
         print(url)
