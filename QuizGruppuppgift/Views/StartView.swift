@@ -151,16 +151,29 @@ struct StartView: View {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
                                             amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $selectionCategory)
                         }
-                    
+                        
+                        Button(action: {
+                            scoreboardViewIsPresented.toggle()
+                        }) {
+                            Text("Scoreboard")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(Color.black)
+                                .frame(width: 150, height: 40)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color.offwhite)
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                )
+                        }
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
-                        }
-
-
                     }
                 }
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 30)   
+                
+            }
+            
         }
     }
 

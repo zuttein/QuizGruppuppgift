@@ -11,7 +11,7 @@ class DataController: ObservableObject {
     
     
     @Published var numberOfQuestions: Int = 10
-    @Published var category: [String] = ["Mixed","General Knowledge","Entertainment","Social Sciences", "Natural Sciences", "Sport"]
+    @Published var category: [String] = ["Mixed","General Knowledge","Books","Film","Music","Musicals & Theatres","Television","Video Games","Board Games","Science & Nature","Computers","Mathematics","Mythology","Sports","Geography","Politics","Art","Celebrities","Animals","Vehicles","Comics","Gadgets","Japanese Anime & Manga","Cartoon & Animations"]
     @Published var categorySelection: String = "Mixed"
     @Published var difficulty: [String] = ["Easy","Medium","Hard"]
     @Published var difficultySelection = "Easy"
@@ -23,7 +23,8 @@ class DataController: ObservableObject {
         
         questions.self = []
         var allQuestions: [Question] = []
-        var url: URL? = nil
+        var categoryId: Int = 9
+        var url = URL(string: "https://opentdb.com/api.php?amount=10&type=boolean")
         
         // Helper function to make an API call and parse the response
         func apiCall(url: URL) {
@@ -66,98 +67,70 @@ class DataController: ObservableObject {
         // Generate URL based on category and other parameters
         if category == "Mixed" {
             url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&difficulty=\(difficulty.lowercased())&type=boolean")
-            apiCall(url: url!)
-            print(url!)
-        } else if category == "General Knowledge" || category == "Sport" {
+        } 
+        
+        // Bugg in Api returns no questions when calling category 21 with a dificulty choice, therefore querring for all difficulty levels.
+        else if category == "Sport" {
             let categoryId = category == "General Knowledge" ? "9" : "21"
-            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty.lowercased())&type=boolean")
-            apiCall(url: url!)
-            print(url!)
-        } else {
-            // Define category numbers based on category names
-            let categoryNumbers: [Int]
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=21&type=boolean")
+        } 
+        
+        else {
             switch category {
-            case "Natural Sciences":
-                categoryNumbers = [17, 18, 19, 27, 29, 30]
-            case "Social Sciences":
-                categoryNumbers = [20, 22, 23, 24, 25]
-            //Entertainment category / default:
+            case "Books":
+                categoryId = 10
+            case "Film":
+                categoryId = 11
+            case "Music":
+                categoryId = 12
+            case "Musicals & Theatres":
+                categoryId = 13
+            case "Entertainment: Books":
+                categoryId = 14
+            case "Television":
+                categoryId = 15
+            case "Video Games":
+                categoryId = 16
+            case "Board Games":
+                categoryId = 17
+            case "Science & Nature":
+                categoryId = 18
+            case "Computers":
+                categoryId = 19
+            case "Mathematics":
+                categoryId = 20
+            case "Mythology":
+                categoryId = 22
+            case "Geography":
+                categoryId = 23
+            case "Politics":
+                categoryId = 24
+            case "Art":
+                categoryId = 25
+            case "Celebrities":
+                categoryId = 26
+            case "Animals":
+                categoryId = 27
+            case "Vehicles":
+                categoryId = 28
+            case "Comics":
+                categoryId = 29
+            case "Gadgets":
+                categoryId = 30
+            case "Japanese Anime & Manga":
+                categoryId = 31
+            case "Cartoon & Animations":
+                categoryId = 32
             default:
-                categoryNumbers = [10, 11, 12, 13, 14, 15, 16, 26, 28, 31, 32]
+                categoryId = 9
             }
-       
             
-            //                // Fetch questions for each category
-            // Fungerade inte p.g.a. att anrop till samma kategori strax efter varandra ger samma fråga om och om igen.
-            //                for _ in 0..<amountQuestions {
-            //                    let randomCategory = categoryNumbers.randomElement()!
-            //                    url = URL(string: "https://opentdb.com/api.php?amount=1&category=\(randomCategory)&difficulty=\(difficulty)&type=boolean")
-            //                    apiCall(url: url!)
-            //                }
-            
-            
-            // Initialize an array to store the number of questions for each category
-            var amountQuestionsPerCategory = [Int](repeating: 0, count: categoryNumbers.count)
-            
-            // Distribute the total number of questions randomly among the categories
-            for _ in 0..<amountQuestions {
-                let randomCategoryIndex = Int.random(in: 0..<categoryNumbers.count)
-                amountQuestionsPerCategory[randomCategoryIndex] += 1
-            }
-            print(amountQuestionsPerCategory)
-            
-            // Fetch questions for each category
-            for (index, categoryNumber) in categoryNumbers.enumerated() {
-                if amountQuestionsPerCategory[index] != 0 {
-                    url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestionsPerCategory[index])&category=\(categoryNumber)&difficulty=\(difficulty.lowercased())&type=boolean")
-                    print(url!)
-                    apiCall(url: url!)
-                }
-            }
+            url = URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty.lowercased())&type=boolean")
         }
+        
+        print(url)
+        apiCall(url: url!)
+        
     }
 
-    
-//    func buildURLString(categori: String, difficulty: String) {
-//        
-//        
-//        /*
-//         if category == samhällskunskap
-//            bygg url anropa fetchData(med url) så många gånger man behöver för att matcha antalet frågor man väljer
-//            populate questions
-//         
-//         */
-//        
-//        
-//      //  let url = "https://opentdb.com/api.php?amount=\(numberOfQuestions)&difficulty=\(difficulty[0].lowercased())&type=boolean"
-//        
-//    }
-//    
-//    
-//    @MainActor
-//    func fetchData(url: String) async{
-//        
-//        
-//        do{
-//            let apiService = APIService(urlString: url)
-//            guard let data : Response = try await apiService.getJSON() else {return}
-//            self.questions = data.results
-//            
-//        } catch {
-//            print("=")
-//            print("=")
-//            print("=")
-//            print("=")
-//            print(error.localizedDescription)
-//            print("=")
-//            print("=")
-//            print("=")
-//            print("=")
-//        }
-//        
-//    }
-    
-    
-    
-    
 }
