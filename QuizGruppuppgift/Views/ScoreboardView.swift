@@ -51,7 +51,8 @@ struct ScoreboardView: View {
 struct ScoreboardView: View {
     @Environment(\.presentationMode) var presentationMode
     @Query var games: [Game]
-    
+    @Environment(\.modelContext) var modelContext
+
     
     var body: some View {
         ZStack{
@@ -70,6 +71,10 @@ struct ScoreboardView: View {
                             
                             ForEach(game.players, id: \.self) { player in
                                 Text("Player Name: \(player.name) - Score: \(player.score)")
+                            }
+                        }.swipeActions {
+                            Button("Delete", systemImage: "trash", role: .destructive) {
+                                modelContext.delete(game)
                             }
                         }
                     }
@@ -91,7 +96,7 @@ struct ScoreboardView: View {
                             )
                     }
                     Button(action: {
-                        //TODO: Funktion för att rensa scoreboard
+                        deleteAll()
                     }) {
                         Text("Clear Scoreboard")
                             .font(.system(size: 16, weight: .bold))
@@ -107,6 +112,11 @@ struct ScoreboardView: View {
                 
             }
             
+        }
+    }
+    func deleteAll(){
+        for game in games {
+            modelContext.delete(game)
         }
     }
 }

@@ -9,19 +9,13 @@ import SwiftUI
 
 struct PlayerSetupView: View {
     @Binding var amountOfPlayers: Int
-
     @Binding var amountOfQuestions: Int
-    
+    @Binding var difficulty: String
+    @Binding var selectionCategory: String
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
-    @State var difficulty: String = "Katastrof"
     
-
-    @Binding var selectionCategory: String
-   
-   
-
     let maxPlayers = 10
     
     var body: some View {
@@ -30,27 +24,17 @@ struct PlayerSetupView: View {
             Color.offwhite
                 .ignoresSafeArea()
             VStack{
-                
                 Text(header)
                     .font(.title)
                     .padding(0)
-                
-                
                 List{
                     ForEach(0..<amountOfPlayers, id: \.self) { index in
                                     TextField("Player \(index + 1)", text: .constant(""))
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .padding()
                                 }
-
-                    
-                    
                 }
 
-             
-              
-                
-    
                 HStack {
                     Text("Difficulty: \(difficulty) ")
                         .font(.system(size: 16, weight: .bold))
@@ -62,24 +46,15 @@ struct PlayerSetupView: View {
                         .accentColor(.black)
                 }
                 .padding()
-                  
-             
-
-
-                Text("Categories")
+                
+                Text("Category")
                     .font(.system(size: 16, weight: .bold))
                     .accentColor(.black)
                     .frame(width: 100, height: 15)
                     Text("\(selectionCategory)")
                 .padding(.bottom,125)
 
-                
-                
-                Text("Difficulty: \(difficulty) ")
-                
-                
                 Button(action: {
-                    
                 }) {
                     Text("Start Game")
                         .font(.system(size: 16, weight: .bold))
@@ -103,6 +78,6 @@ struct PlayerSetupView: View {
 
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionCategory: .constant("sport"))
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), difficulty: .constant(("easy")), selectionCategory: .constant("sport"))
 
 }

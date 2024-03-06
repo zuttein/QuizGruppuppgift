@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct StartView: View {
     
     @ObservedObject var dataController = DataController()
@@ -59,7 +58,7 @@ struct StartView: View {
             
                         Text("Choose category")
                             .font(.headline)
-                        Picker("Kategori", selection: $selectionCategory) {
+                        Picker("Category", selection: $selectionCategory) {
                             ForEach(dataController.category, id: \.self) { category in
                                 Text(category)
                             }
@@ -87,7 +86,7 @@ struct StartView: View {
 
                         Text("Choose Difficulty")
                             .font(.headline)
-                        Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
+                        Picker("Difficulty", selection: $dataController.difficultySelection) {
                             ForEach(dataController.difficulty, id: \.self) { difficulty in
                                 Text(difficulty)
                             }
@@ -149,7 +148,7 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
-                                            amountOfQuestions: $dataController.numberOfQuestions, selectionCategory: $selectionCategory)
+                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$selectionDifficulty, selectionCategory: $selectionCategory)
                         }
                     
                         .sheet(isPresented: $scoreboardViewIsPresented) {
