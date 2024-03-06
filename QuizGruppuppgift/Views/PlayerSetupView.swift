@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerSetupView: View {
     @Binding var amountOfPlayers: Int
+
     @Binding var amountOfQuestions: Int
     
     @ObservedObject var viewModel = ViewModel()
@@ -16,6 +17,11 @@ struct PlayerSetupView: View {
     @State var header: String = "Player Setup"
     @State var difficulty: String = "Katastrof"
     
+
+    @Binding var selectionCategory: String
+   
+   
+
     let maxPlayers = 10
     
     var body: some View {
@@ -40,16 +46,11 @@ struct PlayerSetupView: View {
                     
                     
                 }
+
              
-                Text("Choosen category")
-                    .font(.system(size: 16, weight: .bold))
-                    .accentColor(.black)
-                    
-                List{
-                    Text("Sport")
-                }.padding()
+              
                 
-                
+    
                 HStack {
                     Text("Difficulty: \(difficulty) ")
                         .font(.system(size: 16, weight: .bold))
@@ -64,12 +65,23 @@ struct PlayerSetupView: View {
                   
              
 
+
+                Text("Categories")
+                    .font(.system(size: 16, weight: .bold))
+                    .accentColor(.black)
+                    .frame(width: 100, height: 15)
+                    Text("\(selectionCategory)")
+                .padding(.bottom,125)
+
+                
+                
+                Text("Difficulty: \(difficulty) ")
                 
                 
                 Button(action: {
                     
                 }) {
-                    Text("Starta spel")
+                    Text("Start Game")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color.black)
                         .frame(width: 150, height: 40)
@@ -90,5 +102,7 @@ struct PlayerSetupView: View {
     
 
 #Preview {
-    PlayerSetupView(amountOfPlayers: .constant(5), amountOfQuestions: .constant(5))
+
+    PlayerSetupView(amountOfPlayers: .constant(5),selectionCategory: .constant("sport"),amountOfQuestions: .constant(10))
+
 }
