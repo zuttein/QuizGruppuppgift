@@ -119,7 +119,7 @@ struct StartView: View {
                             )
                     }
                 .sheet(isPresented: $playerViewIsPresented){
-                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers)
+                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,selectionCategory: $selectionCategory)
                 }
                     
                     Button(action: {

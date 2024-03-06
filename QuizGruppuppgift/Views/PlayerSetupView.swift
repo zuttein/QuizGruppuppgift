@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerSetupView: View {
     @Binding var amountOfPlayers: Int
-//    @State var selectionNumberOfPlayers = ""
+    @Binding var selectionCategory: String
     @ObservedObject var viewModel = ViewModel()
     @ObservedObject var dataController = DataController()
     @State var header: String = "Player Setup"
@@ -42,11 +42,8 @@ struct PlayerSetupView: View {
                     .font(.system(size: 16, weight: .bold))
                     .accentColor(.black)
                     .frame(width: 100, height: 15)
-                List{
-                    Text("Sport")
-                    Text("Mat")
-                    Text("Historia")
-                }.padding(.bottom,125)
+                    Text("\(selectionCategory)")
+                .padding(.bottom,125)
                 
                 
                 Text("Svårighetsgrad: \(difficulty) ")
@@ -76,5 +73,5 @@ struct PlayerSetupView: View {
     
 
 #Preview {
-    PlayerSetupView(amountOfPlayers: .constant(5))
+    PlayerSetupView(amountOfPlayers: .constant(5),selectionCategory: .constant("sport"))
 }
