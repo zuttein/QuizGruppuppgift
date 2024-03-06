@@ -150,16 +150,17 @@ struct StartView: View {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
                                             amountOfQuestions: $dataController.numberOfQuestions, difficulty:$selectionDifficulty, selectionCategory: $dataController.categorySelection)
                         }
-                    
+                        
+                        
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
-                        }
-
-
                     }
                 }
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 30)   
+                
+            }
+            
         }
     }
 
