@@ -12,7 +12,7 @@ struct StartView: View {
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
     
-    @State var selectionCategory = ""
+//    @State var selectionCategory = ""
     @State var selectionDifficulty = ""
     
     @State var playerViewIsPresented = false
@@ -58,7 +58,7 @@ struct StartView: View {
             
                         Text("Choose category")
                             .font(.headline)
-                        Picker("Category", selection: $selectionCategory) {
+                    Picker("Category", selection: $dataController.categorySelection) {
                             ForEach(dataController.category, id: \.self) { category in
                                 Text(category)
                             }
@@ -106,7 +106,7 @@ struct StartView: View {
                         HStack {
                             Button(action: {
                                 print("pressed")
-                                dataController.fetchQuestions(category: selectionCategory, difficulty: selectionDifficulty, amountQuestions: dataController.numberOfQuestions) { questions in
+                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: selectionDifficulty, amountQuestions: dataController.numberOfQuestions) { questions in
                                     if let questions = questions {
                                         // Successfully fetched questions
                                         print("Fetched \(questions.count) questions")
@@ -148,7 +148,7 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
-                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$selectionDifficulty, selectionCategory: $selectionCategory)
+                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$selectionDifficulty, selectionCategory: $dataController.categorySelection)
                         }
                     
                         .sheet(isPresented: $scoreboardViewIsPresented) {
