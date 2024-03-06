@@ -18,7 +18,9 @@ struct StartView: View {
     @State var selectionDifficulty = ""
     
     @State var playerViewIsPresented = false
+
     @State var scoreboardViewIsPresented = false
+
 
     var body: some View {
         NavigationView {
@@ -26,6 +28,40 @@ struct StartView: View {
                 Color.offwhite
                     .ignoresSafeArea()
                 
+
+                
+                
+                Text("Antal Spelare \(viewModel.selectionNumberOfPlayers)")
+                    .font(.headline)
+                Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
+                .font(.system(size: 16, weight: .bold))
+                .accentColor(.black)
+                .frame(height: 40)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color.offwhite)
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                )
+                
+                Text("Antal Frågor \(dataController.numberOfQuestions)")
+                    .font(.headline)
+                
+                Slider(value: Binding<Double>(
+                            get: { Double(dataController.numberOfQuestions) },
+                            set: { dataController.numberOfQuestions = Int($0) }
+                        ),
+                        in: 1...100,
+                        step: 1
+                    )
+                
+                
+                
+                Text("Välj Svårhetsgrad")
+                    .font(.headline)
+                Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
+                    ForEach(dataController.difficulty, id: \.self) { difficulty in
+                        Text(difficulty)
+
                 VStack {
                     Text("Hot potato")
                         .font(.title)
@@ -43,6 +79,7 @@ struct StartView: View {
                         ForEach(dataController.category, id: \.self) { category in
                             Text(category)
                         }
+
                     }
                     
                     .font(.system(size: 16, weight: .bold))
@@ -137,7 +174,10 @@ struct StartView: View {
                             )
                     }
                 .sheet(isPresented: $playerViewIsPresented){
-                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,selectionCategory: $selectionCategory)
+
+                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, 
+                                    amountOfQuestions: $dataController.numberOfQuestions,selectionCategory: $selectionCategory)
+
                 }
                     
                     Button(action: {
