@@ -74,8 +74,8 @@ struct AnswerView: View {
                 HStack{
                     Button(action: {
                     
-                        //Ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
-                        //alt. att man kommer till FinishView om det itne finns fler frågor (logik nedan)
+                        //Lägg till kod för att ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
+                        //alt. att man kommer till FinishView om det inte finns fler frågor (logik för det senare nedan)
                         
                         showAnswerView = false
                         
