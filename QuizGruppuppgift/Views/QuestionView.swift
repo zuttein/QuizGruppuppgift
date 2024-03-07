@@ -14,16 +14,16 @@ struct QuestionView: View {
     
     //Dummie för playerdata
     let players: [Player] = [
-        Player(name: "Kevin", score: 0),
-        Player(name: "Dennis", score: 0),
-        Player(name: "Joakim", score: 0),
-        Player(name: "Katja", score: 0),
-        Player(name: "Genti", score: 0),
-        Player(name: "Janne", score: 0),
-        Player(name: "Pelle", score: 0),
-        Player(name: "Lisa", score: 0),
-        Player(name: "Kalle", score: 0),
-        Player(name: "Gregor", score: 0)
+        Player(name: "Kevin", score: 0, answer: false),
+        Player(name: "Dennis", score: 0, answer: false),
+        Player(name: "Joakim", score: 0, answer: false),
+        Player(name: "Katja", score: 0, answer: false),
+        Player(name: "Genti", score: 0, answer: false),
+        Player(name: "Janne", score: 0, answer: false),
+        Player(name: "Pelle", score: 0, answer: false),
+        Player(name: "Lisa", score: 0, answer: false),
+        Player(name: "Kalle", score: 0, answer: false),
+        Player(name: "Gregor", score: 0, answer: false)
     ]
     
     var body: some View {
@@ -49,12 +49,9 @@ struct QuestionView: View {
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                         Circle()
-                            .fill(viewModel.selectedAnswer == true ? .green : .black)
+                            .fill(.green)
                             .frame(width: 25, height: 25)
-                            .onTapGesture {
-                                viewModel.selectedAnswer = true
-                                viewModel.updateSelectedPlayerColor()
-                            }
+                            
                         
                         Text("FALSE")
                             .padding()
@@ -63,12 +60,9 @@ struct QuestionView: View {
                             .multilineTextAlignment(.leading)
                         
                         Circle()
-                            .fill(viewModel.selectedAnswer == false ? .red : .black)
+                            .fill(.red)
                             .frame(width: 25, height: 25)
-                            .onTapGesture {
-                                viewModel.selectedAnswer = false
-                                viewModel.updateSelectedPlayerColor()
-                            }
+
                         
                     }
                     .background(
@@ -95,13 +89,13 @@ struct QuestionView: View {
                                     Text(player.name)
                                         .multilineTextAlignment(.leading)
                                 }
-                            }
-                        }
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        )
+                                               }
+                                           }
+                                           .background(
+                                               RoundedRectangle(cornerRadius: 10)
+                                                   .foregroundColor(Color.offwhite)
+                                                   .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                           )
 
                         
                         VStack{

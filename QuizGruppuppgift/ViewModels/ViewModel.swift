@@ -11,7 +11,6 @@ import SwiftUI
 
 class ViewModel: ObservableObject {
     @Published var selectedPlayer: Player? = nil
-    @Published var selectedAnswer: Bool? = nil
     @Published var playerColors: [UUID: Color] = [:]
     
     
@@ -28,17 +27,25 @@ class ViewModel: ObservableObject {
     init() {
         self.getScoreboard()
         self.getGameplay()
+        
+    
     }
     
     
     func updateSelectedPlayerColor() {
-         guard let selectedAnswer = selectedAnswer, let selectedPlayer = selectedPlayer else {
-             return
-         }
+        guard let player = selectedPlayer else { return }
+        
+        //Byter answer variablen mellan sant och falskt
+        player.answer?.toggle()
 
-         let color: Color = selectedAnswer ? .green : .red
-         playerColors[selectedPlayer.id] = color
-     }
+        //Om answer är true eller nil så blir cirkeln vid spelaren grön, om den är falsk är den röd.
+        if player.answer ?? true {
+                playerColors[player.id] = .green
+            } else {
+                playerColors[player.id] = .red
+            }
+        }
+    
     
     
     func getScoreboard() {
@@ -71,7 +78,7 @@ class ViewModel: ObservableObject {
         // this is dummy add real players to append.
         
         for i in 0...10 {
-            players.append(Player(name: "Player \(i)", score: i+Int.random(in: 0...10)))
+            players.append(Player(name: "Player \(i)", score: i+Int.random(in: 0...10), answer: false))
         }
         
         currentGame.players.append(contentsOf: players)
