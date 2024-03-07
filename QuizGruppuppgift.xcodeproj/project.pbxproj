@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F29BC242B988C4500AF6FD6 /* GifReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */; };
-		6F29BC292B989B0D00AF6FD6 /* hotpotatologo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6F29BC282B989B0D00AF6FD6 /* hotpotatologo.gif */; };
+		6F29BC2F2B99BD4800AF6FD6 /* hotpotatologo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6F29BC2E2B99BD4800AF6FD6 /* hotpotatologo.gif */; };
 		6F58A7F92B8CCD68001D4662 /* QuizGruppuppgiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */; };
 		6F58A7FB2B8CCD68001D4662 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F58A7FA2B8CCD68001D4662 /* StartView.swift */; };
 		6F58A7FD2B8CCD6A001D4662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */; };
@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifReaderView.swift; sourceTree = "<group>"; };
-		6F29BC282B989B0D00AF6FD6 /* hotpotatologo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = hotpotatologo.gif; path = ../../../../../Downloads/hotpotatologo.gif; sourceTree = "<group>"; };
+		6F29BC2E2B99BD4800AF6FD6 /* hotpotatologo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = hotpotatologo.gif; path = ../../../Downloads/hotpotatologo.gif; sourceTree = "<group>"; };
 		6F58A7F52B8CCD68001D4662 /* QuizGruppuppgift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizGruppuppgift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGruppuppgiftApp.swift; sourceTree = "<group>"; };
 		6F58A7FA2B8CCD68001D4662 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -66,14 +66,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F29BC1F2B988BB600AF6FD6 /* GifLogo */ = {
-			isa = PBXGroup;
-			children = (
-				6F29BC282B989B0D00AF6FD6 /* hotpotatologo.gif */,
-			);
-			path = GifLogo;
-			sourceTree = "<group>";
-		};
 		6F58A7EC2B8CCD68001D4662 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +85,7 @@
 		6F58A7F72B8CCD68001D4662 /* QuizGruppuppgift */ = {
 			isa = PBXGroup;
 			children = (
+				6F29BC2E2B99BD4800AF6FD6 /* hotpotatologo.gif */,
 				6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */,
 				6F58A80F2B9085E1001D4662 /* Views */,
 				7CF7CBB62B8F67F7002FB912 /* ViewModels */,
@@ -108,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
-				6F29BC1F2B988BB600AF6FD6 /* GifLogo */,
 				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FF2B8CCD6A001D4662 /* Preview Assets.xcassets */,
 			);
@@ -226,7 +218,7 @@
 			files = (
 				6F58A8002B8CCD6A001D4662 /* Preview Assets.xcassets in Resources */,
 				6F58A7FD2B8CCD6A001D4662 /* Assets.xcassets in Resources */,
-				6F29BC292B989B0D00AF6FD6 /* hotpotatologo.gif in Resources */,
+				6F29BC2F2B99BD4800AF6FD6 /* hotpotatologo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
