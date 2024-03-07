@@ -11,23 +11,30 @@ struct GameView: View {
     @Environment(\.modelContext) var modelContext
     @ObservedObject var viewModel = ViewModel()
     
-    @State var questionAnswer: Bool = false
-    
-    
+    @State var showQuestionView = true
+    @State var showAnswerView = false
     
     var body: some View {
         NavigationStack {
             
-            QuestionView()
-                .toolbar{
-                    Button {
-                        saveGame()
-                        
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
+            if showQuestionView {
+                QuestionView(showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
+            } else if showAnswerView {
+                AnswerView(onSaveGame: saveGame, showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
+            } else {
+                FinishView(game: viewModel.currentGame)
+            }
+            
+            
+//                .toolbar{
+//                    Button {
+//                        saveGame()
+//                        
+//                        
+//                    } label: {
+//                        Image(systemName: "plus")
+//                    }
+//                }
            
             
         }
