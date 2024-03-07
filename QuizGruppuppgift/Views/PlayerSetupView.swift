@@ -50,15 +50,11 @@ struct PlayerSetupView: View {
                     Text("Difficulty:")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(Color.offwhite)
-//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
-//                        )
+
                         .padding(5)
 
 
-                    Text("\(difficulty)")
+                    Text("\(selectionDifficulty)")
                         .font(.system(size: 18, weight: .bold))
 
                     
@@ -66,11 +62,7 @@ struct PlayerSetupView: View {
                     Text("Amount of questions)")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(Color.offwhite)
-//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
-//                        )
+
                         .padding(5)
 
                     Text("\(amountOfQuestions)")
@@ -80,26 +72,13 @@ struct PlayerSetupView: View {
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
                         .frame(width: 100, height: 15)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(Color.offwhite)
-//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
-//                        )
+
                         .padding(5)
                     Text("\(selectionCategory)")
                         .font(.system(size: 18, weight: .bold))
                     
                 }
 
-                Button(action: {
-
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.offwhite)
-                        .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
-                )
-                .padding(10)
                 HStack{
                     Button(action: {
                     }) {
@@ -113,9 +92,6 @@ struct PlayerSetupView: View {
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }
-
-                    
-                  
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     })
@@ -134,8 +110,9 @@ struct PlayerSetupView: View {
                 }
             }
         }
-      
+                       
         }
+                       
     }
 #Preview {
 
