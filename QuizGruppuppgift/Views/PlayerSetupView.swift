@@ -90,6 +90,9 @@ struct PlayerSetupView: View {
                         .font(.system(size: 18, weight: .bold))
                     
                 }
+
+                Button(action: {
+
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
@@ -110,6 +113,7 @@ struct PlayerSetupView: View {
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }
+
                     
                   
                     Button(action: {
