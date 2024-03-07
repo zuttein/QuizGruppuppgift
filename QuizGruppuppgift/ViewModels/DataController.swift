@@ -16,6 +16,7 @@ class DataController: ObservableObject {
     @Published var difficulty: [String] = ["Easy","Medium","Hard"]
     @Published var difficultySelection = "Easy"
     @Published var questions: [Question] = []
+    @Published var currentQuestion = Question(question: "Question missing", answer: true)
     
     // Fetch questions from API
     func fetchQuestions(category: String, difficulty: String, amountQuestions: Int, completion: @escaping ([Question]?) -> Void) {
