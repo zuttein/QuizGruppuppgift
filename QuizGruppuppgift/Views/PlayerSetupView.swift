@@ -51,7 +51,6 @@ struct PlayerSetupView: View {
                 
                 Text("Svårighetsgrad: \(difficulty) ")
                 
-                
                 Button(action: {
                     
                 }) {
