@@ -21,9 +21,9 @@ struct StartView: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    //                    GifReaderView(gifName: "hotpotatologo")
-                    //                        .scaledToFit()
-                    
+//                                        GifReaderView(gifName: "hotpotatologo")
+//                                            .scaledToFit()
+//                    
                     
                 
                     Text("Amount of questions \(dataController.numberOfQuestions)")

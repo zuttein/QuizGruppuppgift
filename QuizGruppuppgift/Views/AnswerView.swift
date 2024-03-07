@@ -15,16 +15,16 @@ struct AnswerView: View {
     
     //Dummies eftersom det inte finns någon tillagd i Player klassen
     var players: [Player] = [
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75)
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+         
       ]
     
     
