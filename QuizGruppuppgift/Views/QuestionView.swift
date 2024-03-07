@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QuestionView: View {
 
+
 @State var numbersOfQuestion: String = "Question 1/10"
 @State var Question: String = "Is Stockholm the capital city of Sweden"
 @State private var progressValue: Float = 0.3
@@ -210,6 +211,10 @@ struct QuestionView: View {
            }
        }
    }
+
+    
+    
+   
 }
 }
 
