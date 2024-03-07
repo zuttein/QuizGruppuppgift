@@ -7,12 +7,18 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 class ViewModel: ObservableObject {
+    @Published var selectedPlayer: Player? = nil
+    @Published var selectedAnswer: Bool? = nil
+    @Published var playerColors: [UUID: Color] = [:]
+    
     
     @Published var selectionNumberOfPlayers = 1
     @Published var currentGame: Game = Game(date: Date(), players: [])
     @Published var gameEnded = false
+
 
 
     //@Published var gameScores: [GameScore] = []
@@ -23,6 +29,16 @@ class ViewModel: ObservableObject {
         self.getScoreboard()
         self.getGameplay()
     }
+    
+    
+    func updateSelectedPlayerColor() {
+         guard let selectedAnswer = selectedAnswer, let selectedPlayer = selectedPlayer else {
+             return
+         }
+
+         let color: Color = selectedAnswer ? .green : .red
+         playerColors[selectedPlayer.id] = color
+     }
     
     
     func getScoreboard() {
@@ -63,6 +79,9 @@ class ViewModel: ObservableObject {
         print(currentGame)
         
     }
+    
+    
+    
     
     
     

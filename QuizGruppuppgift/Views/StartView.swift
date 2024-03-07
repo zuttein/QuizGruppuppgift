@@ -25,9 +25,6 @@ struct StartView: View {
                     GifReaderView(gifName: "hotpotatologo")
                         .scaledToFit()
                     
-                    
-
-
                     Text("Amount of questions \(dataController.numberOfQuestions)")
 
                         .font(.headline)
