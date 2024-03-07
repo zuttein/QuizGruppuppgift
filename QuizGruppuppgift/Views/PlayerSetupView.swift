@@ -12,7 +12,7 @@ struct PlayerSetupView: View {
     
     @Binding var amountOfPlayers: Int
     @Binding var amountOfQuestions: Int
-    @Binding var difficulty: String
+    @Binding var selectionDifficulty: String
     @Binding var selectionCategory: String
     
     @State var startViewIsPresented = false
@@ -57,8 +57,10 @@ struct PlayerSetupView: View {
 //                        )
                         .padding(5)
 
+
                     Text("\(difficulty)")
                         .font(.system(size: 18, weight: .bold))
+
                     
                     
                     Text("Amount of questions)")
@@ -133,7 +135,7 @@ struct PlayerSetupView: View {
     }
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), difficulty: .constant(("easy")), selectionCategory: .constant("sport"))
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"))
 
 }
 

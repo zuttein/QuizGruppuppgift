@@ -12,9 +12,6 @@ struct StartView: View {
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
     
-//    @State var selectionCategory = ""
-//    @State var selectionDifficulty = ""
-    
     @State var playerViewIsPresented = false
     @State var scoreboardViewIsPresented = false
 
@@ -25,39 +22,27 @@ struct StartView: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    
-                    Text("Hot potato")
-                        .font(.title)
-                    Image("Potatis")
-                        .resizable()
+                    GifReaderView(gifName: "hotpotatologo")
                         .scaledToFit()
-                        .frame(width: 300, height: 300)
                     
                     
 
+
                     Text("Amount of questions \(dataController.numberOfQuestions)")
+
                         .font(.headline)
 
                     Slider(value: Binding<Double>(
                                 get: { Double(dataController.numberOfQuestions) },
                                 set: { dataController.numberOfQuestions = Int($0) }
                             ),
-                            in: 1...100,
+                            in: 1...50,
                             step: 1
                         )
-
-//                    Text("Välj Svårhetsgrad")
-//                        .font(.headline)
-//                    Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
-//                        ForEach(dataController.difficulty, id: \.self) { difficulty in
-//                            Text(difficulty)
-//                        }
-//                    }
-                    
-    
             
                         Text("Choose category")
                             .font(.headline)
+
                     Picker("Category", selection: $dataController.categorySelection) {
                             ForEach(dataController.category, id: \.self) { category in
                                 Text(category)
@@ -105,7 +90,8 @@ struct StartView: View {
                         
                         HStack {
                             Button(action: {
-                                print("pressed")
+                                print(dataController.categorySelection)
+
                                 dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
                                     if let questions = questions {
                                         // Successfully fetched questions
@@ -148,16 +134,21 @@ struct StartView: View {
 
                         .sheet(isPresented: $playerViewIsPresented) {
                             PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers,
-                                            amountOfQuestions: $dataController.numberOfQuestions, difficulty:$dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
+
+                                            amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
                         }
                         
-                        
+
                         .sheet(isPresented: $scoreboardViewIsPresented) {
                             ScoreboardView()
                     }
+                    
                 }
+                
+
             }
-            .padding(.horizontal, 30)   
+            .padding(.horizontal, 30)  
+            .background(Color.offwhite)
                 
             }
             
