@@ -80,8 +80,9 @@ struct PlayerSetupView: View {
                 }
 
                 HStack{
-                    Button(action: {
-                    }) {
+                    NavigationLink(destination: GameView()
+                        .navigationBarBackButtonHidden(true))
+                    {
                         Text("Start Game")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.black)

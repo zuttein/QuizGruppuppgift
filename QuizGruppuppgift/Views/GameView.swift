@@ -18,7 +18,7 @@ struct GameView: View {
     var body: some View {
         NavigationStack {
             
-            ScoreboardView()
+            QuestionView()
                 .toolbar{
                     Button {
                         saveGame()
