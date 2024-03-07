@@ -25,8 +25,7 @@ struct StartView: View {
                     //                        .scaledToFit()
                     
                     
-                    
-                    
+                
                     Text("Amount of questions \(dataController.numberOfQuestions)")
                     
                         .font(.headline)
