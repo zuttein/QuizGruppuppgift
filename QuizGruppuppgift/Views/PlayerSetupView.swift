@@ -32,45 +32,69 @@ struct PlayerSetupView: View {
                 Text(header)
                     .font(.title)
                     .padding(0)
+                
                 List{
                     ForEach(0..<amountOfPlayers, id: \.self) { index in
                         TextField("Player \(index + 1)", text: .constant(""))
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color.offwhite)
+                                    .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+                            )
                     }
                 }
-                
-                
-                
-                
                 VStack {
                     
                     Text("Difficulty:")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .foregroundColor(Color.offwhite)
+//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+//                        )
+                        .padding(5)
+
                     Text("\(difficulty)")
                         .font(.system(size: 18, weight: .bold))
-
+                    
                     
                     Text("Amount of questions)")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
-                    Text("\(amountOfQuestions)")
-                        .font(.system(size: 16, weight: .bold))
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .foregroundColor(Color.offwhite)
+//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+//                        )
+                        .padding(5)
 
+                    Text("\(amountOfQuestions)")
+                        .font(.system(size: 18, weight: .bold))
+                    
                     Text("Category")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
                         .frame(width: 100, height: 15)
-                    
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .foregroundColor(Color.offwhite)
+//                                .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+//                        )
+                        .padding(5)
                     Text("\(selectionCategory)")
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(.bottom)
+                        .font(.system(size: 18, weight: .bold))
+                    
                 }
                 .padding()
-                
-              
-                
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color.offwhite)
+                        .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+                )
+                .padding(10)
                 HStack{
                     Button(action: {
                     }) {
@@ -101,18 +125,12 @@ struct PlayerSetupView: View {
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                                     )
                                             }
-                                       
-                    
-                    
                 }
             }
         }
       
         }
-  
     }
-    
-
 #Preview {
 
     PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), difficulty: .constant(("easy")), selectionCategory: .constant("sport"))
@@ -122,7 +140,4 @@ struct PlayerSetupView: View {
 
 
 
-// .background(
-//RoundedRectangle(cornerRadius: 10)
-//    .foregroundColor(Color.offwhite)
-//    .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
+
