@@ -9,8 +9,12 @@ import SwiftUI
 
 struct QuestionView: View {
     @ObservedObject var viewModel = ViewModel()
+    @Binding var showQuestionView: Bool
+    @Binding var showAnswerView: Bool
+    
     @State var numbersOfQuestion: String = "Question 1/10"
     @State var Question: String = "Is Stockholm the capital city of Sweden"
+    
     
     //Dummie för playerdata
     let players: [Player] = [
@@ -106,7 +110,11 @@ struct QuestionView: View {
                         
                         VStack{
                             Button(action: {
-                               
+                                showAnswerView = true
+                                showQuestionView = false
+                                
+                                //Logik för att rätta svar och dela ut poäng läggs till här
+                                
                             }) {
                                 Text("Submit")
                                     .font(.system(size: 16, weight: .bold))
@@ -120,6 +128,8 @@ struct QuestionView: View {
                             }
                             
                             Button(action: {
+                                
+                                //Vad ska denna knapp göra?
                                
                             }) {
                                 Text("Cancel")
@@ -145,6 +155,6 @@ struct QuestionView: View {
 
 
 
-#Preview {
-   QuestionView()
-}
+//#Preview {
+//   QuestionView()
+//}

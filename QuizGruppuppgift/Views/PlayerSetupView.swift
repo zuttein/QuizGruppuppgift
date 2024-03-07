@@ -59,7 +59,7 @@ struct PlayerSetupView: View {
 
                     
                     
-                    Text("Amount of questions)")
+                    Text("Amount of questions")
                         .font(.system(size: 20, weight: .bold))
                         .accentColor(.black)
 
@@ -81,6 +81,9 @@ struct PlayerSetupView: View {
 
                 HStack{
                     NavigationLink(destination: GameView()
+                        .onTapGesture {
+                            print(DataController.shared.questions)
+                        }
                         .navigationBarBackButtonHidden(true))
                     {
                         Text("Start Game")

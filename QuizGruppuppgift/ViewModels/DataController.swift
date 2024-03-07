@@ -9,6 +9,7 @@ import Foundation
 
 
 class DataController: ObservableObject {
+    static let shared = DataController()
     
     @Published var numberOfQuestions: Int = 10
     @Published var category: [String] = ["Mixed","General Knowledge","Books","Film","Music","Musicals & Theatres","Television","Video Games","Board Games","Science & Nature","Computers","Mathematics","Mythology","Sports","Geography","Politics","Art","Celebrities","Animals","Vehicles","Comics","Gadgets","Japanese Anime & Manga","Cartoon & Animations"]
