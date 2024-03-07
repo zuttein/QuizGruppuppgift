@@ -31,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifReaderView.swift; sourceTree = "<group>"; };
-		6F29BC322B99DADD00AF6FD6 /* hotpotato.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hotpotato.gif; sourceTree = "<group>"; };
 		6F58A7F52B8CCD68001D4662 /* QuizGruppuppgift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizGruppuppgift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGruppuppgiftApp.swift; sourceTree = "<group>"; };
 		6F58A7FA2B8CCD68001D4662 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
