@@ -12,8 +12,8 @@ import SwiftUI
 class ViewModel: ObservableObject {
     @Published var selectedPlayer: Player? = nil
     @Published var playerColors: [UUID: Color] = [:]
-    
-    
+    @Published var playerInfo: [String] = []
+
     @Published var selectionNumberOfPlayers = 1
     @Published var currentGame: Game = Game(date: Date(), players: [])
     @Published var gameEnded = false
@@ -88,8 +88,27 @@ class ViewModel: ObservableObject {
     }
     
     
+    func createGame(players: [Player]) {
+            // Skapa ett nytt Game-objekt med angivna spelare och spara det i currentGame
+            currentGame = Game(date: Date(), players: players)
+        }
     
     
+    func addPlayer(name: String) {
+        currentGame.players.append(Player(name: name, score: 0, answer: true))
+        
+        
+    }
+    func updateGame(){
+        for player in playerInfo {
+            addPlayer(name: player)
+            
+        }
     
-    
+    }
+    func updatePlayerInfo(){
+        for i in 0...selectionNumberOfPlayers{
+            playerInfo.append("player \(i)")
+        }
+    }
 }
