@@ -38,23 +38,20 @@ struct PlayerSetupView: View {
                     ForEach(0..<amountOfPlayers, id: \.self) { index in
                         TextField("Spelare \(index + 1)", text: Binding(
                                 get: {
-                                    if index < viewModel.playerInfo.count {
-                                        return viewModel.playerInfo[index]
+                                    if index < viewModel.players.count {
+                                        return viewModel.players[index].name
                                     } else {
                                         return ""
                                     }
                                 },
                                 set: { newValue in
-                                    if index < viewModel.playerInfo.count {
-                                        viewModel.playerInfo[index] = newValue
+                                    if index < viewModel.players.count {
+                                        viewModel.players[index].name = newValue
                                     } else {
-                                        viewModel.playerInfo.append(newValue)
+                                        viewModel.players.append(Player(name: newValue, score: 0, answer: false))
                                     }
                                 }
                             ))
-                        .onSubmit {
-                            viewModel.updateGame()
-                        }
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                             .background(
@@ -130,9 +127,7 @@ struct PlayerSetupView: View {
                             
     
                            
-                }.onAppear(perform: {
-                    viewModel.updatePlayerInfo()
-                })
+                }
             }
         }
                        

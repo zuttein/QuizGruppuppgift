@@ -18,9 +18,15 @@ struct FinishView: View {
                 Text(game.date.extractDate(to: .date))
                     .font(.title)
                     .fontWeight(.black)
-                Text(game.date.extractDate(to: .hour))
-                    .font(.headline)
+                HStack {
+                    Text(game.date.extractDate(to: .hour))
+                        .font(.headline)
                     .fontWeight(.black)
+                    Text(game.category)
+                        .font(.headline)
+                        .fontWeight(.black)
+                }
+                
                    
             }.padding(.vertical)
             ForEach(game.players) { player in
