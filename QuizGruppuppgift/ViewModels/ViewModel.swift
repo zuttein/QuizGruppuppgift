@@ -31,21 +31,8 @@ class ViewModel: ObservableObject {
     func gameToSave() {
         
         currentGame = Game(date: Date(), players: [], category: "Any Category")
-        var players: [Player] = []
-        // this is dummy add real players to append.
         
-        for i in 0...10 {
-            players.append(Player(name: "Player \(i)", score: i+Int.random(in: 0...10), answer: false))
-        }
-        players.sort{
-            $0.score >= $1.score
-        }
-        /*for player in players {
-            print(player.name + "\(player.score)" )
-        }*/
         currentGame.players.append(contentsOf: players)
-        
-        
         
         print(currentGame)
         

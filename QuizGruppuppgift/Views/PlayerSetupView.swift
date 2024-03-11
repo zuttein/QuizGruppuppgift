@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct PlayerSetupView: View {
-    @Environment(\.presentationMode) var presentationMode
+    
     
     @Binding var amountOfPlayers: Int
     @Binding var amountOfQuestions: Int
     @Binding var selectionDifficulty: String
     @Binding var selectionCategory: String
-    @State var showQuestionView = true
-    @State var showAnswerView = false
+    
     
 //    @State private var playerNames: [String] = Array(repeating: "", count: 10) // Initiera med tomma strängar
     @ObservedObject var viewModel : ViewModel
@@ -116,8 +115,7 @@ struct PlayerSetupView: View {
 
 
                     Button(action: {
-                        viewModel.showQuestionView = true
-                        viewModel.playerSetUpView = false
+                        
                     }) {
                         Text("Back")
                         .font(.system(size: 16, weight: .bold))
@@ -160,7 +158,7 @@ struct PlayerSetupView: View {
     }
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"),viewModel: ViewModel(),dataController: DataController())
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"), viewModel: ViewModel(),dataController: DataController())
 
 }
 

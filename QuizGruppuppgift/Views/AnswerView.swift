@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AnswerView: View {
     
-    var onSaveGame: () -> Void // Closure to save the game
+    @Environment(\.modelContext) var modelContext
 
     //Dummies eftersom det inte finns någon tillagd i Player klassen
     @ObservedObject var viewModel: ViewModel
@@ -66,11 +67,21 @@ struct AnswerView: View {
                     
                         //Lägg till kod för att ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
                         //alt. att man kommer till FinishView om det inte finns fler frågor (logik för det senare nedan)
+                        if dataController.questions.isEmpty {
+                            saveGame()
+                            viewModel.showFinishView = true
+                            viewModel.showAnswerView = false
+
+                            
+                        } else {
+                            dataController.questions.remove(at: 0)
+                            viewModel.showAnswerView = false
+                            viewModel.showQuestionView = true
+                        }
                         
-                        viewModel.showAnswerView = false
-                        viewModel.showQuestionView = true
                         
-                        dataController.questions.remove(at: 0)
+                        
+                       
                         
                     }) {
                         Text("Next Question")
@@ -88,6 +99,14 @@ struct AnswerView: View {
                 }
             }
             
+        }
+    }
+    func saveGame(){
+        viewModel.gameToSave()
+        modelContext.insert(viewModel.currentGame)
+        sleep(2)
+        withAnimation {
+            viewModel.gameEnded.toggle()
         }
     }
 }
