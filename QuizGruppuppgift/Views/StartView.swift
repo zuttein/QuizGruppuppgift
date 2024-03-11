@@ -23,6 +23,8 @@ struct StartView: View {
                 VStack {
                     GifReaderView(gifName: "hotpotatologo")
                         .scaledToFit()
+                    GIFView(gifName: "hotpotatologo")
+                                   .frame(width: 200, height: 200)
                     
                     
                 
