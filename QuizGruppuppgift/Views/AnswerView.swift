@@ -15,8 +15,8 @@ struct AnswerView: View {
     //Dummies eftersom det inte finns någon tillagd i Player klassen
     @ObservedObject var viewModel: ViewModel
     @ObservedObject var dataController: DataController
-    
-    
+        
+
     var body: some View {
         
         ZStack {
@@ -49,10 +49,16 @@ struct AnswerView: View {
                                          .foregroundColor(Color.offwhite)
                                          .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
                                  )
+                             
+                             
+                             //lägger till progressbar för att se progress brevid score
+                             ProgressView(value: Float(player.score) / Float(viewModel.maxScore))
+                                                        .frame(width: 100, height: 10)
+                             
+
                          }
                          .listRowBackground(Color.offwhite)
-                        
-                        
+                                                
                      }
                 .scrollContentBackground(.hidden)
                 .padding(.top, 50)
@@ -110,6 +116,7 @@ struct AnswerView: View {
         }
     }
 }
+
     
 //#Preview {
 //    AnswerView()

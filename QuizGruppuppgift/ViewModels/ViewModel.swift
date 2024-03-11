@@ -25,6 +25,13 @@ class ViewModel: ObservableObject {
     @Published var currentGame: Game = Game(date: Date(), players: [])
     
     @Published var gameEnded = false
+    
+    var maxScore: Int {
+            // Calculate the maximum achievable score based on your quiz setup
+            // Replace this with your logic
+            return 50 // Example value, replace it with your actual max score
+        }
+    
 
    
     
