@@ -10,11 +10,12 @@ import SwiftUI
 struct GameView: View {
     @Environment(\.modelContext) var modelContext
     @ObservedObject var viewModel = ViewModel()
-    
+    @State var playerInfo: [(name: String, color: Color)] = []
     @State var showQuestionView = true
     @State var showAnswerView = false
     
     var body: some View {
+        
         NavigationStack {
             
             if showQuestionView {
