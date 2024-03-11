@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct AnswerView: View {
+    var onSaveGame: () -> Void // Closure to save the game
+    
+    @Binding var showQuestionView: Bool
+    @Binding var showAnswerView: Bool
     
     //Dummies eftersom det inte finns någon tillagd i Player klassen
     var players: [Player] = [
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Janna", score: 75),
-          Player(id: UUID(), name: "Jan", score: 100),
-          Player(id: UUID(), name: "Janne", score: 150),
-          Player(id: UUID(), name: "Janna", score: 75)
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+          Player(id: UUID(), name: "Jan", score: 100, answer: false),
+          Player(id: UUID(), name: "Janne", score: 150, answer: false),
+          Player(id: UUID(), name: "Janna", score: 75, answer: false),
+         
       ]
     
     
@@ -69,7 +73,20 @@ struct AnswerView: View {
                 
                 HStack{
                     Button(action: {
+                    
+                        //Lägg till kod för att ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
+                        //alt. att man kommer till FinishView om det inte finns fler frågor (logik för det senare nedan)
                         
+                        showAnswerView = false
+                        
+                        if DataController.shared.questions.isEmpty {
+                            print("Game ended")
+                        
+                        } else {
+                            showQuestionView = true
+                        
+                            
+                        }
                     }) {
                         Text("Next Question")
                             .font(.system(size: 16, weight: .bold))
@@ -90,6 +107,6 @@ struct AnswerView: View {
     }
 }
     
-#Preview {
-    AnswerView()
-}
+//#Preview {
+//    AnswerView()
+//}

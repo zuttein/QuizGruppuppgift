@@ -7,135 +7,144 @@
 
 import SwiftUI
 
-
 struct StartView: View {
     
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
-    
-    @State var selectionCategory = ""
-   // @State var selectionNumberOfPlayers = 1
-    @State var selectionDifficulty = ""
-    
-    @State var playerViewIsPresented = false
+
+    @State var scoreboardViewIsPresented = false
 
     var body: some View {
-        ZStack{
-            Color.offwhite
-                .ignoresSafeArea()
-            
-            VStack {
-                Text("Coolt namn")
-                    .font(.title)
-                Image("Potatis")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300,height: 300)
-                    
-                
-                Spacer()
-                
-                Text("Välj Kategori")
-                    .font(.headline)
-                Picker("Kategori", selection: $selectionCategory){
-                    ForEach(dataController.category, id: \.self) { category in
-                        Text(category)
-                    }
-                }
-       
-                .font(.system(size: 16, weight: .bold))
-                .accentColor(.black)
-                .pickerStyle(MenuPickerStyle())
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.offwhite)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2))
-                
-                
-                
-                Text("Antal Spelare \(viewModel.selectionNumberOfPlayers)")
-                    .font(.headline)
-                Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
-                .font(.system(size: 16, weight: .bold))
-                .accentColor(.black)
-                .frame(height: 40)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.offwhite)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                )
-                
-                Text("Välj Svårhetsgrad")
-                    .font(.headline)
-                Picker("Svårhetsgrad", selection: $dataController.difficultySelection) {
-                    ForEach(dataController.difficulty, id: \.self) { difficulty in
-                        Text(difficulty)
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
+        NavigationView {
+            ZStack {
+                Color.offwhite
+                    .ignoresSafeArea()
 
-                .font(.system(size: 16, weight: .bold))
-                .accentColor(.black)
-                .frame(height: 40)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.offwhite)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                )
-                Spacer()
-                
-                
-                
-                HStack{
-                    Button(action: {
-                        print("pressed")
-                        playerViewIsPresented.toggle()
-                        /*Task {
-                            await dataController.fetchData(url: <#String#>)
-                            print("data hämtad")
-                        }*/
-                       
-                    }) {
-                        Text("Fortsätt")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color.black)
-                            .frame(width: 150, height: 40)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            )
-                    }
-                .sheet(isPresented: $playerViewIsPresented){
-                    PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers)
-                }
+                VStack {
+//                                        GifReaderView(gifName: "hotpotatologo")
+//                                            .scaledToFit()
+//                    
                     
-                    Button(action: {
-                        for question in dataController.questions {
-                            print(question.question)
+                
+                    Text("Amount of questions \(dataController.numberOfQuestions)")
+                    
+                        .font(.headline)
+                    
+                    Slider(value: Binding<Double>(
+                        get: { Double(dataController.numberOfQuestions) },
+                        set: { dataController.numberOfQuestions = Int($0) }
+                    ),
+                           in: 1...50,
+                           step: 1
+                    )
+                    
+                    Text("Choose category")
+                        .font(.headline)
+                    
+                    Picker("Category", selection: $dataController.categorySelection) {
+                        ForEach(dataController.category, id: \.self) { category in
+                            Text(category)
                         }
-                    }) {
-                        Text("Highscore")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color.black)
-                            .frame(width: 150, height: 40)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            )
                     }
+                    .font(.system(size: 16, weight: .bold))
+                    .accentColor(.black)
+                    .pickerStyle(MenuPickerStyle())
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color.offwhite)
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    )
                     
-                }
-            }
-            
-        }
-        .padding(.horizontal, 30)
-        
-        
+                    Text("Number of Players \(viewModel.selectionNumberOfPlayers)")
+                        .font(.headline)
+                    Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
+                        .font(.system(size: 16, weight: .bold))
+                        .accentColor(.black)
+                        .frame(height: 40)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.offwhite)
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        )
+                    
+                    Text("Choose Difficulty")
+                        .font(.headline)
+                    Picker("Difficulty", selection: $dataController.difficultySelection) {
+                        ForEach(dataController.difficulty, id: \.self) { difficulty in
+                            Text(difficulty)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .font(.system(size: 16, weight: .bold))
+                    .accentColor(.black)
+                    .frame(height: 40)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color.offwhite)
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    )
+                    
+                    Spacer()
+                    
+                    
+                    HStack {
+                        NavigationLink(destination: PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
+                            .navigationBarBackButtonHidden(true)
+                            .onAppear {
+                                print(dataController.categorySelection)
+                                
+                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
+                                                if let questions = questions {
+                                                    // Successfully fetched questions
+                                                    print("Fetched \(questions.count) questions")
+                                                    for question in questions {
+                                                        print("Question: \(question.question), Answer: \(question.answer)")
+                                                    }
+                                                } else {
+                                                    // Error occurred while fetching questions
+                                                    print("Failed to fetch questions")
+                                                }
+                                            }
+                                        }
+                        ) {
+                            Text("Continue")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(Color.black)
+                                .frame(width: 150, height: 40)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color.offwhite)
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                )
+                        }
+                        .navigationBarBackButtonHidden(true)
+                            
+                            NavigationLink(destination: ScoreboardView()
+                                .navigationBarBackButtonHidden(true)
+                            ) {
+                                Text("Scoreboard")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(Color.black)
+                                    .frame(width: 150, height: 40)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundColor(Color.offwhite)
+                                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    )
+                            }
+                        }
 
-        
+                        
+                    }
+
+            }
+            .padding(.horizontal, 30)  
+            .background(Color.offwhite)
+                
+            }
     }
-}
+        }
+
 
 #Preview {
     StartView()

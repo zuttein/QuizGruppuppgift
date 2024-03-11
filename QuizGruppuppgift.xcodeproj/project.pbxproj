@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F29BC242B988C4500AF6FD6 /* GifReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */; };
 		6F58A7F92B8CCD68001D4662 /* QuizGruppuppgiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */; };
 		6F58A7FB2B8CCD68001D4662 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F58A7FA2B8CCD68001D4662 /* StartView.swift */; };
 		6F58A7FD2B8CCD6A001D4662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifReaderView.swift; sourceTree = "<group>"; };
 		6F58A7F52B8CCD68001D4662 /* QuizGruppuppgift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizGruppuppgift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F58A7F82B8CCD68001D4662 /* QuizGruppuppgiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGruppuppgiftApp.swift; sourceTree = "<group>"; };
 		6F58A7FA2B8CCD68001D4662 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -87,7 +89,6 @@
 				7CF7CBB12B8F6773002FB912 /* APIService */,
 				7CF7CBAC2B8F66F2002FB912 /* Models */,
 				7C7F20162B92152E00E56520 /* Extention */,
-				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FE2B8CCD6A001D4662 /* Preview Content */,
 			);
 			path = QuizGruppuppgift;
@@ -96,6 +97,9 @@
 		6F58A7FE2B8CCD6A001D4662 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				6F29BC322B99DADD00AF6FD6 /* hotpotato.gif */,
+				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
+				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FF2B8CCD6A001D4662 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -106,9 +110,9 @@
 			children = (
 				6F58A7FA2B8CCD68001D4662 /* StartView.swift */,
 				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
-				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
 				7C7F200E2B90953B00E56520 /* GameView.swift */,
 				7C7F20102B90957400E56520 /* QuestionView.swift */,
+				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
 				7C7F20122B9095DA00E56520 /* AnswerView.swift */,
 				7C7F20142B90967700E56520 /* FinishView.swift */,
 			);
@@ -236,6 +240,7 @@
 				82AD60452B8E309E008D5807 /* ViewModel.swift in Sources */,
 				7C7F20112B90957400E56520 /* QuestionView.swift in Sources */,
 				7CF7CBAE2B8F670A002FB912 /* Question.swift in Sources */,
+				6F29BC242B988C4500AF6FD6 /* GifReaderView.swift in Sources */,
 				7C7F20182B92154F00E56520 /* DateExtention.swift in Sources */,
 				7C7F200F2B90953B00E56520 /* GameView.swift in Sources */,
 				6F58A7F92B8CCD68001D4662 /* QuizGruppuppgiftApp.swift in Sources */,
