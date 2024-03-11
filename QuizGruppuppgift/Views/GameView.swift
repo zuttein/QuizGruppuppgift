@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel : ViewModel
     @ObservedObject var dataController : DataController
@@ -20,21 +20,14 @@ struct GameView: View {
         if viewModel.showQuestionView {
             QuestionView(viewModel: viewModel, dataController: dataController)
         } else if viewModel.showAnswerView {
-            AnswerView(onSaveGame: saveGame, viewModel: viewModel, dataController: dataController)
+            AnswerView(viewModel: viewModel, dataController: dataController)
         } else if viewModel.showFinishView {
             FinishView(game: viewModel.currentGame)
         }
     }
     
     // only when game ends...
-    func saveGame(){
-        viewModel.gameToSave()
-        modelContext.insert(viewModel.currentGame)
-        sleep(2)
-        withAnimation {
-            viewModel.gameEnded.toggle()
-        }
-    }
+    
 }
 
 #Preview {
