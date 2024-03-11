@@ -11,8 +11,7 @@ import SwiftUI
         @ObservedObject var viewModel : ViewModel
         @ObservedObject var dataController : DataController
         
-        @Binding var showQuestionView: Bool
-        @Binding var showAnswerView: Bool
+      
         
         @State var numbersOfQuestion: String = "Question 1/10"
         @State var Question: String = "Is Stockholm the capital city of Sweden"
@@ -103,6 +102,7 @@ import SwiftUI
                                 //Logik för att rätta svar och dela ut poäng läggs till här
                                 viewModel.currentQuestion = dataController.questions.first
                                 viewModel.checkAnswer()
+                                
                                 
                             }) {
                                 Text("Submit")

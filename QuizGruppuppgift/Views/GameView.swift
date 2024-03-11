@@ -9,36 +9,20 @@ import SwiftUI
 
 struct GameView: View {
     @Environment(\.modelContext) var modelContext
+    
     @ObservedObject var viewModel : ViewModel
     @ObservedObject var dataController : DataController
-    @State var playerInfo: [(name: String, color: Color)] = []
-    @State var showQuestionView = true
-    @State var showAnswerView = false
     
     var body: some View {
-        
-        NavigationStack {
-            
-            if showQuestionView {
-                QuestionView(viewModel: viewModel, dataController: dataController, showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
-            } else if showAnswerView {
-                AnswerView(onSaveGame: saveGame, showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
-            } else {
-                FinishView(game: viewModel.currentGame)
-            }
-            
-            
-//                .toolbar{
-//                    Button {
-//                        saveGame()
-//                        
-//                        
-//                    } label: {
-//                        Image(systemName: "plus")
-//                    }
-//                }
-           
-            
+        if viewModel.playerSetUpView {
+            PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection,viewModel: viewModel,dataController: dataController)
+        }
+        if viewModel.showQuestionView {
+            QuestionView(viewModel: viewModel, dataController: dataController)
+        } else if viewModel.showAnswerView {
+            AnswerView(onSaveGame: saveGame, viewModel: viewModel, dataController: dataController)
+        } else if viewModel.showFinishView {
+            FinishView(game: viewModel.currentGame)
         }
     }
     

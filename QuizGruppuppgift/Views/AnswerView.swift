@@ -10,12 +10,10 @@ import SwiftUI
 struct AnswerView: View {
     
     var onSaveGame: () -> Void // Closure to save the game
-    
-    @Binding var showQuestionView: Bool
-    @Binding var showAnswerView: Bool
-    
+
     //Dummies eftersom det inte finns någon tillagd i Player klassen
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var dataController: DataController
     
     
     var body: some View {
@@ -63,20 +61,17 @@ struct AnswerView: View {
                 
                 HStack{
                     Button(action: {
+                        
+                        
                     
                         //Lägg till kod för att ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
                         //alt. att man kommer till FinishView om det inte finns fler frågor (logik för det senare nedan)
                         
-                        showAnswerView = false
+                        viewModel.showAnswerView = false
+                        viewModel.showQuestionView = true
                         
-                        if DataController.shared.questions.isEmpty {
-                            print("Game ended")
+                        dataController.questions.remove(at: 0)
                         
-                        } else {
-                            showQuestionView = true
-                        
-                            
-                        }
                     }) {
                         Text("Next Question")
                             .font(.system(size: 16, weight: .bold))

@@ -96,22 +96,28 @@ struct PlayerSetupView: View {
                 }
                 
                 HStack{
-                    NavigationLink(destination: QuestionView(viewModel: viewModel, dataController: dataController,showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)) { // Använd NavigationLink för att navigera till QuestionView
-                                            Text("Submit")
-                          
-                                                .font(.system(size: 16, weight: .bold))
-                                                .foregroundColor(Color.black)
-                                                .frame(width: 150, height: 40)
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 10)
-                                                        .foregroundColor(Color.offwhite)
-                                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                                )
-                        
+                    Button {
+                        viewModel.showQuestionView = true
+                        viewModel.showFinishView = false
+                        viewModel.playerSetUpView = false
+                        viewModel.showAnswerView = false
+                    } label: {
+                        Text("Submit")
+      
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .frame(width: 150, height: 40)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color.offwhite)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                            )
                     }
 
+
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        viewModel.showQuestionView = true
+                        viewModel.playerSetUpView = false
                     }) {
                         Text("Back")
                         .font(.system(size: 16, weight: .bold))

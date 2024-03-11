@@ -88,7 +88,7 @@ struct StartView: View {
                     
                     
                     HStack {
-                        NavigationLink(destination: PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection,viewModel: viewModel,dataController: dataController)
+                        NavigationLink(destination: GameView(viewModel: viewModel, dataController: dataController)
                             .navigationBarBackButtonHidden(true)
                             
                         ) {

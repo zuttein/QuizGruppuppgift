@@ -11,6 +11,13 @@ import SwiftUI
 
 class ViewModel: ObservableObject {
     
+    
+    @Published var playerSetUpView = true
+    @Published var showQuestionView = false
+    @Published var showAnswerView = false
+    @Published var showFinishView = false
+    
+    
     @Published var players: [Player] = []
     @Published var selectionNumberOfPlayers = 1
     @Published var currentQuestion: Question?
@@ -19,7 +26,7 @@ class ViewModel: ObservableObject {
     
     @Published var gameEnded = false
 
-    
+   
     
     func gameToSave() {
         
@@ -62,17 +69,16 @@ class ViewModel: ObservableObject {
             player.answer = true
         }
         
-        showAnswerView()
         
-        for player in players {
-            print(player.name + "\(player.score)")
-        }
-        
+        getNextQuestion()
+        showAnswerView.toggle()
+        showQuestionView.toggle()
     }
     
     
     func getNextQuestion(){
-        deleteOldQuestion()
+       
+    
         
         /*guard dataController.questions.isEmpty else {
             showFinishView()
@@ -83,17 +89,4 @@ class ViewModel: ObservableObject {
         
     }
     
-    
-    func showAnswerView(){
-      //  getNextQuestion()
-    }
-    
-    func showFinishView(){
-        
-    }
-    
-    func deleteOldQuestion(){
-       
-    }
-
 }
