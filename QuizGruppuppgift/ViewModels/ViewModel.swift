@@ -10,14 +10,13 @@ import CoreData
 import SwiftUI
 
 class ViewModel: ObservableObject {
-    @Published var selectedPlayer: Player? = nil
-    @Published var playerColors: [UUID: Color] = [:]
-    @Published var playerInfo: [String] = []
-
+    
+    @Published var players: [Player] = []
     @Published var selectionNumberOfPlayers = 1
+    
     @Published var currentGame: Game = Game(date: Date(), players: [])
+    
     @Published var gameEnded = false
-    @Published var colors: [Color] = []
 
 
 
@@ -33,22 +32,6 @@ class ViewModel: ObservableObject {
     }
     
     
-    func updateSelectedPlayerColor() {
-        guard let player = selectedPlayer else { return }
-        
-        //Byter answer variablen mellan sant och falskt
-        player.answer?.toggle()
-
-        //Om answer är true eller nil så blir cirkeln vid spelaren grön, om den är falsk är den röd.
-        if player.answer ?? true {
-                playerColors[player.id] = .green
-            } else {
-                playerColors[player.id] = .red
-            }
-        }
-    
-    
-    
     func getScoreboard() {
         /*
          let request = NSFetchRequest<GameScore>(entityName: "GameScore")
@@ -61,7 +44,7 @@ class ViewModel: ObservableObject {
     
     func getGameplay(){
         /*
-         let request = NSFetchRequest<Game>(entityName: "Game")
+    '     let request = NSFetchRequest<Game>(entityName: "Game")
          do {
          game = try container.viewContext.fetch(request)
          } catch let error {
@@ -95,17 +78,6 @@ class ViewModel: ObservableObject {
         
     }
     
-    func generateRandomColors(count: Int) -> [Color] {
-        for _ in 0..<count {
-            let red = Double.random(in: 0..<1)
-            let green = Double.random(in: 0..<1)
-            let blue = Double.random(in: 0..<1)
-            let color = Color(red: red, green: green, blue: blue)
-            colors.append(color)
-        }
-        return colors
-    }
-    
     func createGame(players: [Player]) {
             // Skapa ett nytt Game-objekt med angivna spelare och spara det i currentGame
             currentGame = Game(date: Date(), players: players)
@@ -114,19 +86,6 @@ class ViewModel: ObservableObject {
     
     func addPlayer(name: String) {
         currentGame.players.append(Player(name: name, score: 0, answer: true))
-        
-        
     }
-    func updateGame(){
-        for player in playerInfo {
-            addPlayer(name: player)
-            
-        }
-    
-    }
-    func updatePlayerInfo(){
-        for i in 0...selectionNumberOfPlayers{
-            playerInfo.append("player \(i)")
-        }
-    }
+
 }

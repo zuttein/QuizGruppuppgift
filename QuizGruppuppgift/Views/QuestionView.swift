@@ -70,15 +70,19 @@ import SwiftUI
                             
                             LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                                 
-                                ForEach(viewModel.currentGame.players, id: \.name) { playerInfo in
+                                ForEach(viewModel.players, id: \.id) { player in
                                     VStack {
-                                        Text(playerInfo.name)
+                                        Text(player.name)
                                             .multilineTextAlignment(.leading)
-////                                        Circle()
-//                                            .fill(playerInfo.color)
-//                                            .frame(width: 25, height: 25)
+                                        Circle()
+                                            .fill(player.answer! ? .green : .red)
+                                            .frame(width: 25, height: 25)
+                                        
                                        
+                                    }.onTapGesture {
+                                        player.answer?.toggle()
                                     }
+                                    .padding(30)
                                     
                                    
                                 }
@@ -88,9 +92,7 @@ import SwiftUI
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(Color.offwhite)
                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        ).onAppear(perform: {
-                            print(viewModel.playerInfo.count)
-                        })
+                        )
                         
                         
                         VStack{
@@ -131,7 +133,11 @@ import SwiftUI
                     }
                     
                 }
-                
+                .onAppear(perform: {
+                    for player in viewModel.currentGame.players {
+                        print(player.name)
+                    }
+                })
                 
             }
             }
