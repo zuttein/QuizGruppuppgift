@@ -97,7 +97,6 @@
 		6F58A7FE2B8CCD6A001D4662 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				6F29BC322B99DADD00AF6FD6 /* hotpotato.gif */,
 				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FF2B8CCD6A001D4662 /* Preview Assets.xcassets */,
