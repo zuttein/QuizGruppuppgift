@@ -83,7 +83,7 @@ struct QuestionView: View {
                             ForEach(players, id: \.id) { player in
                                 HStack {
                                     Circle()
-                                        .fill(viewModel.playerColors[player.id] ?? .black)
+                                        .fill(viewModel.playerColors[player.id] ?? .green)
                                         .frame(width: 25, height: 25)
                                         .onTapGesture {
                                             viewModel.selectedPlayer = player
