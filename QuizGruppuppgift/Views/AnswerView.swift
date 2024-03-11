@@ -8,24 +8,14 @@
 import SwiftUI
 
 struct AnswerView: View {
+    
     var onSaveGame: () -> Void // Closure to save the game
     
     @Binding var showQuestionView: Bool
     @Binding var showAnswerView: Bool
     
     //Dummies eftersom det inte finns någon tillagd i Player klassen
-    var players: [Player] = [
-          Player(id: UUID(), name: "Jan", score: 100, answer: false),
-          Player(id: UUID(), name: "Janne", score: 150, answer: false),
-          Player(id: UUID(), name: "Janna", score: 75, answer: false),
-          Player(id: UUID(), name: "Jan", score: 100, answer: false),
-          Player(id: UUID(), name: "Janne", score: 150, answer: false),
-          Player(id: UUID(), name: "Janna", score: 75, answer: false),
-          Player(id: UUID(), name: "Jan", score: 100, answer: false),
-          Player(id: UUID(), name: "Janne", score: 150, answer: false),
-          Player(id: UUID(), name: "Janna", score: 75, answer: false),
-         
-      ]
+    @ObservedObject var viewModel: ViewModel
     
     
     var body: some View {
@@ -40,7 +30,7 @@ struct AnswerView: View {
                 
                 Spacer()
                 
-                List(players, id: \.id) { player in
+                List(viewModel.players, id: \.id) { player in
                          HStack {
                              Text("Name: \(player.name)")
                                  .font(.headline)

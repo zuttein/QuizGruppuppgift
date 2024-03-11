@@ -150,9 +150,12 @@ class DataController: ObservableObject {
         }
         
         let unwrappedURLs = urls.compactMap { $0 }
+        
         apiCall(urls: unwrappedURLs, attemptsLeft: 3, isFirstCall: true) { fetchedQuestions in
             if let fetchedQuestions = fetchedQuestions {
-                allQuestions.append(contentsOf: fetchedQuestions)
+                DispatchQueue.main.async {
+                    self.questions.append(contentsOf: fetchedQuestions)
+                }
             }
             
             // Perform completion with allQuestions or nil if fetching failed

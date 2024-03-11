@@ -8,12 +8,12 @@
 import SwiftUI
 
     struct QuestionView: View {
-        @ObservedObject var viewModel = ViewModel()
+        @ObservedObject var viewModel : ViewModel
+        @ObservedObject var dataController : DataController
+        
         @Binding var showQuestionView: Bool
         @Binding var showAnswerView: Bool
-//        @Binding var playerInfo: [(name: String, color: Color)]
-
-//       @Binding var playerNames:[String]
+        
         @State var numbersOfQuestion: String = "Question 1/10"
         @State var Question: String = "Is Stockholm the capital city of Sweden"
         
@@ -23,12 +23,12 @@ import SwiftUI
                 Color(.offwhite).ignoresSafeArea()
                 
                 VStack(spacing: 10) {
-                    Text(numbersOfQuestion)
+                    Text("Question \(dataController.numberOfQuestions - dataController.questions.count)/\(dataController.numberOfQuestions)")
                         .font(.title)
                         .padding(0)
                         .frame(maxHeight: .infinity, alignment: .top)
                     
-                    Text(Question)
+                    Text(dataController.questions.first?.question ?? "")
                         .padding(.horizontal)
                         .font(.title2)
                         .frame(maxHeight: .infinity, alignment: .top)
@@ -97,10 +97,12 @@ import SwiftUI
                         
                         VStack{
                             Button(action: {
-                                showAnswerView = true
-                                showQuestionView = false
+                                //showAnswerView = true
+                                //showQuestionView = false
                                 
                                 //Logik för att rätta svar och dela ut poäng läggs till här
+                                viewModel.currentQuestion = dataController.questions.first
+                                viewModel.checkAnswer()
                                 
                             }) {
                                 Text("Submit")
@@ -133,11 +135,6 @@ import SwiftUI
                     }
                     
                 }
-                .onAppear(perform: {
-                    for player in viewModel.currentGame.players {
-                        print(player.name)
-                    }
-                })
                 
             }
             }

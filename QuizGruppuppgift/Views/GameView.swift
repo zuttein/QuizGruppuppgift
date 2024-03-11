@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GameView: View {
     @Environment(\.modelContext) var modelContext
-    @ObservedObject var viewModel = ViewModel()
+    @ObservedObject var viewModel : ViewModel
+    @ObservedObject var dataController : DataController
     @State var playerInfo: [(name: String, color: Color)] = []
     @State var showQuestionView = true
     @State var showAnswerView = false
@@ -19,7 +20,7 @@ struct GameView: View {
         NavigationStack {
             
             if showQuestionView {
-                QuestionView(showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
+                QuestionView(viewModel: viewModel, dataController: dataController, showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
             } else if showAnswerView {
                 AnswerView(onSaveGame: saveGame, showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)
             } else {
@@ -53,5 +54,5 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    GameView(viewModel: ViewModel(), dataController: DataController())
 }

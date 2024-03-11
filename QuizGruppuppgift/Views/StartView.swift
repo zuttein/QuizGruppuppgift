@@ -88,24 +88,9 @@ struct StartView: View {
                     
                     
                     HStack {
-                        NavigationLink(destination: PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection)
+                        NavigationLink(destination: PlayerSetupView(amountOfPlayers: $viewModel.selectionNumberOfPlayers, amountOfQuestions: $dataController.numberOfQuestions, selectionDifficulty: $dataController.difficultySelection, selectionCategory: $dataController.categorySelection,viewModel: viewModel,dataController: dataController)
                             .navigationBarBackButtonHidden(true)
-                            .onAppear {
-                                print(dataController.categorySelection)
-                                
-                                dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
-                                                if let questions = questions {
-                                                    // Successfully fetched questions
-                                                    print("Fetched \(questions.count) questions")
-                                                    for question in questions {
-                                                        print("Question: \(question.question), Answer: \(question.answer)")
-                                                    }
-                                                } else {
-                                                    // Error occurred while fetching questions
-                                                    print("Failed to fetch questions")
-                                                }
-                                            }
-                                        }
+                            
                         ) {
                             Text("Continue")
                                 .font(.system(size: 16, weight: .bold))

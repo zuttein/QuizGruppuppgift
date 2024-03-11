@@ -18,8 +18,8 @@ struct PlayerSetupView: View {
     @State var showAnswerView = false
     
 //    @State private var playerNames: [String] = Array(repeating: "", count: 10) // Initiera med tomma strängar
-    @ObservedObject var viewModel = ViewModel()
-    @ObservedObject var dataController = DataController()
+    @ObservedObject var viewModel : ViewModel
+    @ObservedObject var dataController : DataController
     @State var header: String = "Player Setup"
     
     let maxPlayers = 10
@@ -96,7 +96,7 @@ struct PlayerSetupView: View {
                 }
                 
                 HStack{
-                    NavigationLink(destination: QuestionView(viewModel: viewModel,showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)) { // Använd NavigationLink för att navigera till QuestionView
+                    NavigationLink(destination: QuestionView(viewModel: viewModel, dataController: dataController,showQuestionView: $showQuestionView, showAnswerView: $showAnswerView)) { // Använd NavigationLink för att navigera till QuestionView
                                             Text("Submit")
                           
                                                 .font(.system(size: 16, weight: .bold))
@@ -128,6 +128,22 @@ struct PlayerSetupView: View {
     
                            
                 }
+                .onAppear {
+                    print(dataController.categorySelection)
+                    
+                    dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
+                                    if let questions = questions {
+                                        // Successfully fetched questions
+                                        print("Fetched \(questions.count) questions")
+                                        for question in questions {
+                                            print("Question: \(question.question), Answer: \(question.answer)")
+                                        }
+                                    } else {
+                                        // Error occurred while fetching questions
+                                        print("Failed to fetch questions")
+                                    }
+                                }
+                            }
             }
         }
                        
@@ -138,7 +154,7 @@ struct PlayerSetupView: View {
     }
 #Preview {
 
-    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"))
+    PlayerSetupView(amountOfPlayers: .constant(5),amountOfQuestions: .constant(10), selectionDifficulty: .constant(("easy")), selectionCategory: .constant("sport"),viewModel: ViewModel(),dataController: DataController())
 
 }
 
