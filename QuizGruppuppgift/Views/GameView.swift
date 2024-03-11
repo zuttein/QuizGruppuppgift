@@ -45,7 +45,7 @@ struct GameView: View {
     func saveGame(){
         viewModel.gameToSave()
         modelContext.insert(viewModel.currentGame)
-        sleep(UInt32(0.2))
+        sleep(2)
         withAnimation {
             viewModel.gameEnded.toggle()
         }
