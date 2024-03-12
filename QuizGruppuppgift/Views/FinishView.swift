@@ -29,7 +29,7 @@ struct FinishView: View {
                 
                    
             }.padding(.vertical)
-            ForEach(game.players) { player in
+            ForEach(game.players, id:\.id) { player in
                 Spacer(minLength: 0)
                 HStack{
                     Text(player.name)

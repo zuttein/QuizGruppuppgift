@@ -9,5 +9,10 @@ import Foundation
 
 struct Question : Codable {
     let question : String
-    let answer : Bool
+    let answer : String
+    
+    enum CodingKeys: String, CodingKey {
+        case question
+        case answer = "correct_answer"
+    }
 }

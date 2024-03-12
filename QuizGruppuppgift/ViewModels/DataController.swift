@@ -17,16 +17,12 @@ class DataController: ObservableObject {
     @Published var difficulty: [String] = ["Easy","Medium","Hard"]
     @Published var difficultySelection = "Easy"
     @Published var questions: [Question] = []
-    @Published var currentQuestion = Question(question: "Question missing", answer: true)
+    @Published var currentQuestion = Question(question: "Question missing", answer: "true")
     
     // Fetch questions from API
-    func fetchQuestions(category: String, difficulty: String, amountQuestions: Int, completion: @escaping ([Question]?) -> Void) {
-        
-        questions.self = []
-        var allQuestions: [Question] = []
+    
+    func getCategory() -> Int {
         var categoryId: Int = 0
-        var urls = [URL(string: "https://opentdb.com/api.php?amount=10&type=boolean")]
-        
         switch categorySelection {
         case "General Knowledge":
             categoryId = 9
@@ -80,87 +76,61 @@ class DataController: ObservableObject {
         default:
             categoryId = 0
         }
-        
-        urls.removeAll()
-        urls.append(URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&difficulty=\(difficulty.lowercased())&type=boolean"))
-        urls.append(URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&category=\(categoryId)&type=boolean"))
-        urls.append(URL(string: "https://opentdb.com/api.php?amount=\(amountQuestions)&type=boolean"))
-        print(urls)
-        
-        // Helper function to make an API call and parse the response
-        func apiCall(urls: [URL], attemptsLeft: Int, isFirstCall: Bool, completion: @escaping ([Question]?) -> Void) {
-            guard attemptsLeft > 0 else {
-                completion(nil)
-                return
-            }
-            
-            guard let url = urls.first else {
-                // No more URLs to try, return nil
-                completion(nil)
-                return
-            }
-            
-            // Define the delay time (5 seconds) for consecutive calls
-            let delaySeconds: Double = isFirstCall ? 0 : 5.0
-            
-            // Calculate the dispatch time
-            let dispatchTime = DispatchTime.now() + delaySeconds
-            
-            // Delay the API call for consecutive calls
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    print("Calling URL: \(url)")
-                    guard let data = data, error == nil else {
-                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                        // Retry with reduced attempts and remaining URLs
-                        apiCall(urls: Array(urls.dropFirst()), attemptsLeft: attemptsLeft - 1, isFirstCall: isFirstCall, completion: completion)
-                        return
-                    }
-                    
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        if let results = json?["results"] as? [[String: Any]] {
-                            let fetchedQuestions = results.compactMap { result -> Question? in
-                                if let question = result["question"] as? String,
-                                   let answerString = result["correct_answer"] as? String {
-                                    // Convert "True" or "False" string to Bool
-                                    let answer = answerString.lowercased() == "true"
-                                    return Question(question: question, answer: answer)
-                                }
-                                return nil
-                            }
-                            
-                            if fetchedQuestions.isEmpty {
-                                // No questions fetched from this URL, try next URL
-                                apiCall(urls: Array(urls.dropFirst()), attemptsLeft: attemptsLeft - 1, isFirstCall: false, completion: completion)
-                            } else {
-                                completion(fetchedQuestions)
-                            }
-                        } else {
-                            print("Invalid JSON format")
-                            // Retry with reduced attempts and remaining URLs
-                            apiCall(urls: Array(urls.dropFirst()), attemptsLeft: attemptsLeft - 1, isFirstCall: isFirstCall, completion: completion)
-                        }
-                    } catch {
-                        print("Error parsing JSON: \(error)")
-                        // Retry with reduced attempts and remaining URLs
-                        apiCall(urls: Array(urls.dropFirst()), attemptsLeft: attemptsLeft - 1, isFirstCall: isFirstCall, completion: completion)
-                    }
-                }.resume()
-            }
-        }
-        
-        let unwrappedURLs = urls.compactMap { $0 }
-        
-        apiCall(urls: unwrappedURLs, attemptsLeft: 3, isFirstCall: true) { fetchedQuestions in
-            if let fetchedQuestions = fetchedQuestions {
-                DispatchQueue.main.async {
-                    self.questions.append(contentsOf: fetchedQuestions)
-                }
-            }
-            
-            // Perform completion with allQuestions or nil if fetching failed
-            completion(allQuestions.isEmpty ? nil : allQuestions)
+        return categoryId
+    }
+    
+    func getApiURL(worksWithDifficulty: Bool = true) -> String {
+        if worksWithDifficulty {
+            return "https://opentdb.com/api.php?amount=\(numberOfQuestions)&category=\(getCategory())&difficulty=\(difficultySelection.lowercased())&type=boolean"
+        } else {
+            return "https://opentdb.com/api.php?amount=\(numberOfQuestions)&category=\(getCategory())&type=boolean"
         }
     }
+    
+   
+    @MainActor
+    func fetchData(worksWithDifficulty: Bool = true) async {
+        print(getApiURL(worksWithDifficulty: worksWithDifficulty))
+        let apiService = APIService(urlString: getApiURL(worksWithDifficulty: worksWithDifficulty))
+        
+        do{
+            guard let response: APIResponse = try await apiService.getJSON() else {return}
+            if response.response_code == 1 {
+                await fetchData(worksWithDifficulty: false)
+                
+            } else {
+                questions.removeAll()
+                questions.append(contentsOf: response.results)
+            }
+            sleep(5)
+        } catch {
+            print(error.localizedDescription)
+            print(error.self)
+        }
+    }
+}
+
+
+extension String {
+    
+    public func replaceAll(of pattern:String,
+                           with replacement:String,
+                           options: NSRegularExpression.Options = []) -> String{
+      do{
+        let regex = try NSRegularExpression(pattern: pattern, options: [])
+        let range = NSRange(0..<self.utf16.count)
+        return regex.stringByReplacingMatches(in: self, options: [],
+                                              range: range, withTemplate: replacement)
+      }catch{
+        NSLog("replaceAll error: \(error)")
+        return self
+      }
+    }
+    
+    public func replaceQuotes() -> String {
+        return self.replaceAll(of: "&quot;", with: "\"")
+            .replaceAll(of: "&#039;", with: "\'")
+            .replaceAll(of: "&deg;", with: "°")
+    }
+    
 }
