@@ -55,6 +55,12 @@ class ViewModel: ObservableObject {
         currentGame.players.append(Player(name: name, score: 0, answer: true))
     }
     
+    func addPlayers(number: Int) {
+        for index in 0..<number {
+            addPlayer(name: "Player \(index + 1)")
+        }
+    }
+    
     func checkAnswer(){
         for player in players {
             if player.answer == (currentQuestion!.answer.lowercased() == "true") {
