@@ -57,7 +57,7 @@ class ViewModel: ObservableObject {
     
     func checkAnswer(){
         for player in players {
-            if player.answer == (currentQuestion?.answer == "true") {
+            if player.answer == (currentQuestion!.answer.lowercased() == "true") {
                 player.score += 1
             }
             player.answer = true
