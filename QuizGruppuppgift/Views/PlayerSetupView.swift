@@ -15,6 +15,8 @@ struct PlayerSetupView: View {
     @Binding var selectionDifficulty: String
     @Binding var selectionCategory: String
     
+    @FocusState var focus: Bool
+    
     
 //    @State private var playerNames: [String] = Array(repeating: "", count: 10) // Initiera med tomma strängar
     @ObservedObject var viewModel : ViewModel
@@ -35,12 +37,12 @@ struct PlayerSetupView: View {
                 
                 List{
                     ForEach(0..<amountOfPlayers, id: \.self) { index in
-                        TextField("Spelare \(index + 1)", text: Binding(
+                        TextField("Player \(index + 1)", text: Binding(
                                 get: {
                                     if index < viewModel.players.count {
                                         return viewModel.players[index].name
                                     } else {
-                                        return ""
+                                        return "Player \(index)"
                                     }
                                 },
                                 set: { newValue in
@@ -58,6 +60,8 @@ struct PlayerSetupView: View {
                                     .foregroundColor(Color.offwhite)
                                     .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
                             )
+                        
+                            
                     }
                 }
                 VStack {
@@ -96,10 +100,7 @@ struct PlayerSetupView: View {
                 
                 HStack{
                     Button {
-                        viewModel.showQuestionView = true
-                        viewModel.showFinishView = false
-                        viewModel.playerSetUpView = false
-                        viewModel.showAnswerView = false
+                        viewModel.showQuestionV()
                     } label: {
                         Text("Submit")
       
@@ -112,11 +113,8 @@ struct PlayerSetupView: View {
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }
-
-
-                    Button(action: {
-                        
-                    }) {
+                    
+                    NavigationLink(destination: StartView()) {
                         Text("Back")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color.black)
@@ -132,22 +130,11 @@ struct PlayerSetupView: View {
     
                            
                 }
-                .onAppear {
-                    print(dataController.categorySelection)
+                .task {
+                    await dataController.fetchData()
                     
-                    dataController.fetchQuestions(category: dataController.categorySelection, difficulty: dataController.difficultySelection, amountQuestions: dataController.numberOfQuestions) { questions in
-                                    if let questions = questions {
-                                        // Successfully fetched questions
-                                        print("Fetched \(questions.count) questions")
-                                        for question in questions {
-                                            print("Question: \(question.question), Answer: \(question.answer)")
-                                        }
-                                    } else {
-                                        // Error occurred while fetching questions
-                                        print("Failed to fetch questions")
-                                    }
-                                }
-                            }
+                }
+                
             }
         }
                        

@@ -52,7 +52,7 @@ struct AnswerView: View {
                              
                              
                              //lägger till progressbar för att se progress brevid score
-                             ProgressView(value: Float(player.score) / Float(viewModel.maxScore))
+                             ProgressView(value: Float(player.score) / Float(dataController.numberOfQuestions))
                                                         .frame(width: 100, height: 10)
                              
 
@@ -66,55 +66,49 @@ struct AnswerView: View {
                 
                 
                 
-                HStack{
-                    Button(action: {
+                Button(action: {
+                
+                    if dataController.questions.isEmpty {
+                        saveGame()
+                        viewModel.showFinishV()
                         
-                        
-                    
-                        //Lägg till kod för att ta bort första frågan i DataController.shared.questions, så att nästa fråga visas när man kommer in i QuestionView,
-                        //alt. att man kommer till FinishView om det inte finns fler frågor (logik för det senare nedan)
+                    } else {
+                        dataController.questions.remove(at: 0)
                         if dataController.questions.isEmpty {
                             saveGame()
-                            viewModel.showFinishView = true
-                            viewModel.showAnswerView = false
-
-                            
+                            viewModel.showFinishV()
                         } else {
-                            dataController.questions.remove(at: 0)
-                            viewModel.showAnswerView = false
-                            viewModel.showQuestionView = true
+                            viewModel.showQuestionV()
                         }
-                        
-                        
-                        
-                       
-                        
-                    }) {
-                        Text("Next Question")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color.black)
-                            .frame(width: 150, height: 40)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            )
                     }
                     
-                    
+                }) {
+                    Text(dataController.questions.isEmpty ? "Game Ended" : "Next Question")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color.black)
+                        .frame(width: 150, height: 40)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.offwhite)
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        )
                 }
             }
             
         }
     }
+    
     func saveGame(){
+        
         viewModel.gameToSave()
+        
         modelContext.insert(viewModel.currentGame)
         sleep(2)
         withAnimation {
             viewModel.gameEnded.toggle()
         }
     }
+    
 }
 
     

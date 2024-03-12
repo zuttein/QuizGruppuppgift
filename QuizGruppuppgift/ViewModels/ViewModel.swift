@@ -57,7 +57,7 @@ class ViewModel: ObservableObject {
     
     func checkAnswer(){
         for player in players {
-            if player.answer == currentQuestion?.answer {
+            if player.answer == (currentQuestion?.answer == "true") {
                 player.score += 1
             }
             player.answer = true
@@ -65,8 +65,8 @@ class ViewModel: ObservableObject {
         
         
         getNextQuestion()
-        showAnswerView.toggle()
-        showQuestionView.toggle()
+        showAnswerV()
+        
     }
     
     
@@ -81,6 +81,34 @@ class ViewModel: ObservableObject {
         
         
         
+    }
+    
+    func showSetUpPlayerV() {
+        playerSetUpView = true
+        showQuestionView = false
+        showAnswerView = false
+        showFinishView = false
+    }
+    
+    func showQuestionV(){
+        playerSetUpView = false
+        showQuestionView = true
+        showAnswerView = false
+        showFinishView = false
+    }
+    
+    func showAnswerV(){
+        playerSetUpView = false
+        showQuestionView = false
+        showAnswerView = true
+        showFinishView = false
+    }
+    
+    func showFinishV(){
+        playerSetUpView = false
+        showQuestionView = false
+        showAnswerView = false
+        showFinishView = true
     }
     
 }

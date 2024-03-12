@@ -22,12 +22,12 @@ import SwiftUI
                 Color(.offwhite).ignoresSafeArea()
                 
                 VStack(spacing: 10) {
-                    Text("Question \(dataController.numberOfQuestions - dataController.questions.count)/\(dataController.numberOfQuestions)")
+                    Text("Question \(dataController.numberOfQuestions - dataController.questions.count + 1)/\(dataController.numberOfQuestions)")
                         .font(.title)
                         .padding(0)
                         .frame(maxHeight: .infinity, alignment: .top)
                     
-                    Text(dataController.questions.first?.question ?? "")
+                    Text(dataController.questions.first?.question.replaceQuotes() ?? "")
                         .padding(.horizontal)
                         .font(.title2)
                         .frame(maxHeight: .infinity, alignment: .top)
