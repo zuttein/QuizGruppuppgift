@@ -42,7 +42,7 @@ struct PlayerSetupView: View {
                                     if index < viewModel.players.count {
                                         return viewModel.players[index].name
                                     } else {
-                                        return "Player \(index)"
+                                        return "Player \(index + 1)"
                                     }
                                 },
                                 set: { newValue in
