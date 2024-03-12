@@ -12,7 +12,7 @@ class DataController: ObservableObject {
     static let shared = DataController()
     
     @Published var numberOfQuestions: Int = 10
-    @Published var category: [String] = ["Mixed","General Knowledge","Books","Film","Music","Musicals & Theatres","Television","Video Games","Board Games","Science & Nature","Computers","Mathematics","Mythology","Sports","Geography","Politics","Art","Celebrities","Animals","Vehicles","Comics","Gadgets","Japanese Anime & Manga","Cartoon & Animations"]
+    @Published var category: [String] = ["Mixed","General Knowledge","Books","Film","Music","Musicals & Theatres","Television","Video Games","Board Games","Science & Nature","Computers","Mathematics","Mythology","Sports","Geography","Politics","Art","Celebrities","Animals","Vehicles","Comics","Gadgets","Japanese Anime & Manga","Cartoon & Animations","History"]
     @Published var categorySelection: String = "Mixed"
     @Published var difficulty: [String] = ["Easy","Medium","Hard"]
     @Published var difficultySelection = "Easy"
@@ -38,25 +38,26 @@ class DataController: ObservableObject {
             categoryId = 12
         case "Musicals & Theatres":
             categoryId = 13
-        case "Entertainment: Books":
-            categoryId = 14
+       
         case "Television":
-            categoryId = 15
+            categoryId = 14
         case "Video Games":
-            categoryId = 16
+            categoryId = 15
         case "Board Games":
-            categoryId = 17
+            categoryId = 16
         case "Science & Nature":
-            categoryId = 18
+            categoryId = 17
         case "Computers":
-            categoryId = 19
+            categoryId = 18
         case "Mathematics":
-            categoryId = 20
+            categoryId = 19
         case "Sports":
             categoryId = 21
         case "Mythology":
-            categoryId = 22
+            categoryId = 20
         case "Geography":
+            categoryId = 22
+        case "History":
             categoryId = 23
         case "Politics":
             categoryId = 24
