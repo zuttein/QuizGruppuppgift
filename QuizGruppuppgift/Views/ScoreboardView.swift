@@ -56,7 +56,7 @@ struct ScoreboardView: View {
     
     var body: some View {
         ZStack{
-            Color.offwhite
+            Color.offWhite
                 .ignoresSafeArea()
             
             VStack {
@@ -100,7 +100,7 @@ struct ScoreboardView: View {
                             .frame(width: 150, height: 40)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
+                                    .foregroundColor(Color.offWhite)
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }
@@ -113,7 +113,7 @@ struct ScoreboardView: View {
                             .frame(width: 150, height: 40)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.offwhite)
+                                    .foregroundColor(Color.offWhite)
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             )
                     }

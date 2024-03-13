@@ -27,16 +27,31 @@ struct PlayerSetupView: View {
     
     var body: some View {
         ZStack{
+            Color.offWhite.ignoresSafeArea()
             if dataController.showProgressBar {
-                Text("Game will start soon....")
+                
+                VStack {
+                    GifReaderView(gifName: "hotpotato_1")
+                        .frame(width: 200,height: 200)
+                    
+                    Text("Game will start soon....")
+                        .padding(10)
+                }
+                .padding(.top,30)
+                .modifier(InnerNeumorphismModifier())
+                .padding(5)
+                .modifier(NeumorphismModifier())
             } else {
                 ZStack{
-                    Color.offwhite
-                        .ignoresSafeArea()
+                    
                     VStack{
                         Text(header)
                             .font(.title)
-                            .padding(0)
+                            .fontWeight(.black)
+                            .padding(20)
+                            .frame(width: 300, height: 60)
+                            .modifier(InnerNeumorphismModifier())
+                            .padding(.top,40)
                         
                         List{
                             
@@ -59,52 +74,44 @@ struct PlayerSetupView: View {
                                     }
                                 ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.offwhite)
-                                        .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
-                                )
+                                .padding(10)
+                                
+                                .modifier(InnerNeumorphismModifier())
+                            
                                 
                                 
                                 
                             }
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                         }
-                        VStack {
-                            
-                            Text("Difficulty:")
-                                .font(.system(size: 20, weight: .bold))
-                                .accentColor(.black)
-                            
-                                .padding(5)
-                            
-                            
-                            Text("\(selectionDifficulty)")
-                                .font(.system(size: 18, weight: .bold))
-                            
-                            
-                            
-                            Text("Amount of questions")
-                                .font(.system(size: 20, weight: .bold))
-                                .accentColor(.black)
-                            
-                                .padding(5)
-                            
-                            Text("\(amountOfQuestions)")
-                                .font(.system(size: 18, weight: .bold))
-                            
-                            Text("Category")
-                                .font(.system(size: 20, weight: .bold))
-                                .accentColor(.black)
-                                .frame(width: 100, height: 15)
-                            
-                                .padding(5)
-                            Text("\(selectionCategory)")
-                                .font(.system(size: 18, weight: .bold))
-                            
-                        }
+                        .listRowSpacing(-15)
                         
-                        HStack{
+                        
+                        VStack(spacing:11) {
+                            
+                            Text("Difficulty: \(selectionDifficulty.capitalized)")
+                                .font(.system(size: 20, weight: .bold))
+                                .accentColor(.black)
+                            
+                            
+                            Text("Amount of questions: \(amountOfQuestions)")
+                                .font(.system(size: 20, weight: .bold))
+                                .accentColor(.black)
+                            
+                              
+                            
+                            Text("Category: \(selectionCategory.capitalized)")
+                                .font(.system(size: 20, weight: .bold))
+                                .accentColor(.black)
+                                
+                            
+                        }
+                        .padding(20)
+                        .padding(.horizontal, 20)
+                        .modifier(InnerNeumorphismModifier())
+                        .padding(.bottom,30)
+                        HStack(spacing:30){
                             Button {
                                 viewModel.showQuestionV()
                             } label: {
@@ -112,24 +119,23 @@ struct PlayerSetupView: View {
                                 
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color.black)
-                                    .frame(width: 150, height: 40)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
-                                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    )
+                                    .frame(width: 100, height: 40)
+                                    
                             }
+                            .buttonStyle(NeumorphismButtonStyle())
                             
                             NavigationLink(destination: StartView()) {
                                 Text("Back")
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color.black)
-                                    .frame(width: 150, height: 40)
+                                    .frame(width: 100, height: 40)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
+                                            .foregroundColor(Color.offWhite)
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    )                    }
+                                    )}
+                            
+                            .buttonStyle(NeumorphismButtonStyle())
                             
                             
                             

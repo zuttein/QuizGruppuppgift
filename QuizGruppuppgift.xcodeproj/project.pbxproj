@@ -17,6 +17,7 @@
 		7C08396C2BA112BE0011B4AB /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C08396B2BA112BE0011B4AB /* ColorExtention.swift */; };
 		7C08396E2BA1167B0011B4AB /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C08396D2BA1167A0011B4AB /* ViewExtention.swift */; };
 		7C0839702BA11A920011B4AB /* NeumorphismStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */; };
+		7C0839722BA1DCDE0011B4AB /* hotpotato_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7C0839712BA1DCDD0011B4AB /* hotpotato_1.gif */; };
 		7C7F200B2B90891500E56520 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F200A2B90891500E56520 /* Game.swift */; };
 		7C7F200D2B90898100E56520 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F200C2B90898100E56520 /* Player.swift */; };
 		7C7F200F2B90953B00E56520 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F200E2B90953B00E56520 /* GameView.swift */; };
@@ -47,6 +48,7 @@
 		7C08396B2BA112BE0011B4AB /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		7C08396D2BA1167A0011B4AB /* ViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtention.swift; sourceTree = "<group>"; };
 		7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismStyles.swift; sourceTree = "<group>"; };
+		7C0839712BA1DCDD0011B4AB /* hotpotato_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hotpotato_1.gif; sourceTree = "<group>"; };
 		7C7F200A2B90891500E56520 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		7C7F200C2B90898100E56520 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7C7F200E2B90953B00E56520 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -119,14 +121,13 @@
 			isa = PBXGroup;
 			children = (
 				6F58A7FA2B8CCD68001D4662 /* StartView.swift */,
-				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
 				7C7F200E2B90953B00E56520 /* GameView.swift */,
-				7C7F20102B90957400E56520 /* QuestionView.swift */,
 				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
+				7C7F20102B90957400E56520 /* QuestionView.swift */,
 				7C7F20122B9095DA00E56520 /* AnswerView.swift */,
-				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				7C7F20142B90967700E56520 /* FinishView.swift */,
-				7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */,
+				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
+				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				909F8DFD2B9F6B80009A7F9F /* ProgressView.swift */,
 			);
 			path = Views;
@@ -135,7 +136,9 @@
 		7C7F20162B92152E00E56520 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
+				7C0839712BA1DCDD0011B4AB /* hotpotato_1.gif */,
 				6F29BC372B9F4ECC00AF6FD6 /* hotpotatologo.gif */,
+				7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */,
 				7C7F20172B92154E00E56520 /* DateExtention.swift */,
 				7C08396D2BA1167A0011B4AB /* ViewExtention.swift */,
 				7C0839692BA087410011B4AB /* StringExtention.swift */,
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F58A8002B8CCD6A001D4662 /* Preview Assets.xcassets in Resources */,
+				7C0839722BA1DCDE0011B4AB /* hotpotato_1.gif in Resources */,
 				6F58A7FD2B8CCD6A001D4662 /* Assets.xcassets in Resources */,
 				6F29BC382B9F4ECC00AF6FD6 /* hotpotatologo.gif in Resources */,
 			);
@@ -403,6 +407,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Potato Quiz";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The Hot Patato is asking u to save the scores in your photo gallery";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +437,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Potato Quiz";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The Hot Patato is asking u to save the scores in your photo gallery";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

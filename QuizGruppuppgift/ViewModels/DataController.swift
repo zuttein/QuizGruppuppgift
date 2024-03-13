@@ -93,7 +93,7 @@ class DataController: ObservableObject {
     @MainActor
     func fetchData(worksWithDifficulty: Bool = true) async {
         showProgressBar = true
-        sleep(5)
+        
         print(getApiURL(worksWithDifficulty: worksWithDifficulty))
         let apiService = APIService(urlString: getApiURL(worksWithDifficulty: worksWithDifficulty))
         
@@ -101,6 +101,7 @@ class DataController: ObservableObject {
             guard let response: APIResponse = try await apiService.getJSON() else {return}
             print(response.response_code)
             if response.response_code == 1 {
+                sleep(5)
                 await fetchData(worksWithDifficulty: false)
                 
             } else {

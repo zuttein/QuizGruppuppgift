@@ -13,20 +13,12 @@ struct ColorfulBackground<S: Shape>: View {
 
     var body: some View {
         ZStack {
-            if isHighlighted {
-                shape
-                    .fill(Color.green)
-                    .overlay(shape.stroke(LinearGradient(Color.black), lineWidth: 4))
-                    .shadow(color: Color.darkShadow, radius: 5, x: 5, y: 5)
-                    .shadow(color: Color.lightShadow, radius: 5, x: -5, y: -5)
-                
-            } else {
-                shape
-                    .fill(Color.red)
-                    .overlay(shape.stroke(LinearGradient(Color.lightShadow, Color.darkShadow), lineWidth: 4))
-                    .shadow(color: Color.darkShadow, radius: 5, x: -5, y: -6)
-                    .shadow(color: Color.lightShadow, radius: 5, x: 5, y: 5)
-            }
+            shape
+                .fill(isHighlighted ? Color.green : Color.red)
+                .overlay(shape.stroke(LinearGradient(Color.lightShadow, Color.darkShadow), lineWidth: 4))
+                .shadow(color: Color.darkShadow, radius: 5, x: 5, y: 5)
+                .shadow(color: Color.lightShadow, radius: 5, x: -5, y: -5)
+            
         }
     }
 }
@@ -41,7 +33,7 @@ extension LinearGradient {
 struct NeumorphismModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding()
+            
             .background(Color.offWhite)
             .cornerRadius(10)
             .shadow(color: Color.lightShadow,
@@ -54,9 +46,9 @@ struct NeumorphismModifier: ViewModifier {
 struct InnerNeumorphismModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding()
+            
             .background(Color.offWhite)
-            .cornerRadius(10)
+            .cornerRadius(30)
             .overlay(
                 Rectangle()
                     .stroke(Color.offWhite, lineWidth: 5)
@@ -65,7 +57,8 @@ struct InnerNeumorphismModifier: ViewModifier {
                     .shadow(color: Color.lightShadow,
                             radius: 5, x: -2, y: -2)
                     .clipShape(
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 30)
+                            
             )
         )
     }

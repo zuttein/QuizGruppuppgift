@@ -20,92 +20,108 @@ struct StartView: View {
                 Color.offWhite
                     .ignoresSafeArea()
 
-                VStack {
-                    GifReaderView(gifName: "hotpotatologo")
+                VStack(spacing:15) {
+                    GifReaderView(gifName: "hotpotato_1")
                         .scaledToFit()
+                        .padding(.top,30)
+                    
+                        .modifier(InnerNeumorphismModifier())
+                        .padding(5)
+                        .modifier(NeumorphismModifier())
+                        
                     
                 
-                    Text("Amount of questions \(dataController.numberOfQuestions)")
-                    
-                        .font(.headline)
-                    
-                    Slider(value: Binding<Double>(
-                        get: { Double(dataController.numberOfQuestions) },
-                        set: { dataController.numberOfQuestions = Int($0) }
-                    ),
-                           in: 1...10,
-                           step: 1
-                    )
-                    
-                    Text("Choose category")
-                        .font(.headline)
-                    
-                    Picker("Category", selection: $dataController.categorySelection) {
-                        ForEach(dataController.category, id: \.self) { category in
-                            Text(category)
-                        }
+                    VStack{
+                        Text("Amount of questions \(dataController.numberOfQuestions)")
+                        
+                            .font(.headline)
+                            .frame(width: 300, height: 40)
+                            .modifier(InnerNeumorphismModifier())
+                        Slider(value: Binding<Double>(
+                            get: { Double(dataController.numberOfQuestions) },
+                            set: { dataController.numberOfQuestions = Int($0) }
+                        ),
+                               in: 1...10,
+                               step: 1
+                        )
                     }
-                    .font(.system(size: 16, weight: .bold))
-                    .accentColor(.black)
-                    .pickerStyle(MenuPickerStyle())
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.offwhite)
-                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                    )
+                    .padding(5)
+                    .modifier(NeumorphismModifier())
                     
-                    Text("Number of Players \(viewModel.selectionNumberOfPlayers)")
-                        .font(.headline)
-                    Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
+                    HStack{
+                        Text("Choose category")
+                            .font(.headline)
+                            .frame(width: 200, height: 40)
+                        
+                            .modifier(InnerNeumorphismModifier())
+                            .offset(x:8)
+                        Spacer()
+                        Picker("Category", selection: $dataController.categorySelection) {
+                            ForEach(dataController.category, id: \.self) { category in
+                                Text(category)
+                            }
+                        }
+                        .font(.system(size: 16, weight: .bold))
+                        .accentColor(.black)
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                    .padding(10)
+                    .modifier(NeumorphismModifier())
+                    
+                    VStack{
+                        Text("Number of Players \(viewModel.selectionNumberOfPlayers)")
+                            .font(.headline)
+                            .frame(width: 300, height: 40)
+                            .modifier(InnerNeumorphismModifier())
+                        Stepper("Add players", value: $viewModel.selectionNumberOfPlayers, in: 1...10)
+                            .font(.system(size: 16, weight: .bold))
+                            .accentColor(.black)
+                            .frame(height: 40)
+                            
+                    }
+                    .padding(15)
+                    .modifier(NeumorphismModifier())
+                    
+                    VStack{
+                        Text("Choose Difficulty")
+                            .font(.headline)
+                            .frame(width: 300, height: 40)
+                            .modifier(InnerNeumorphismModifier())
+                        Picker("Difficulty", selection: $dataController.difficultySelection) {
+                            ForEach(dataController.difficulty, id: \.self) { difficulty in
+                                Text(difficulty)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
                         .font(.system(size: 16, weight: .bold))
                         .accentColor(.black)
                         .frame(height: 40)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        )
-                    
-                    Text("Choose Difficulty")
-                        .font(.headline)
-                    Picker("Difficulty", selection: $dataController.difficultySelection) {
-                        ForEach(dataController.difficulty, id: \.self) { difficulty in
-                            Text(difficulty)
-                        }
+                        
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .font(.system(size: 16, weight: .bold))
-                    .accentColor(.black)
-                    .frame(height: 40)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.offwhite)
-                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                    )
+                    .padding(10)
+                    .modifier(NeumorphismModifier())
                     
                     Spacer()
                     
                     
-                    HStack {
+                    HStack(spacing:30) {
                         NavigationLink(destination: GameView(viewModel: viewModel, dataController: dataController)
                             .navigationBarBackButtonHidden(true)
-                                       //TODO: Fixa så att koden nedan körs och förifyller spelare inför Player Setup view.
+                         /*              //TODO: Fixa så att koden nedan körs och förifyller spelare inför Player Setup view.
                             .onTapGesture{
                                 viewModel.addPlayers(number: viewModel.selectionNumberOfPlayers)
                                 print(viewModel.players)
-                            }
+                            }*/
                         ) {
                             Text("Continue")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(Color.black)
                                 .frame(width: 150, height: 40)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.offwhite)
-                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                )
+                                
                         }
                         .navigationBarBackButtonHidden(true)
+                        .buttonStyle(NeumorphismButtonStyle())
+                        
                             
                             NavigationLink(destination: ScoreboardView()
                                 .navigationBarBackButtonHidden(true)
@@ -114,12 +130,9 @@ struct StartView: View {
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color.black)
                                     .frame(width: 150, height: 40)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
-                                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    )
+                                    .modifier(NeumorphismModifier())
                             }
+                            .buttonStyle(NeumorphismButtonStyle())
                         }
 
                         
@@ -127,7 +140,7 @@ struct StartView: View {
 
             }
             .padding(.horizontal, 30)  
-            .background(Color.offwhite)
+            .background(Color.offWhite)
                 
             }
     }
