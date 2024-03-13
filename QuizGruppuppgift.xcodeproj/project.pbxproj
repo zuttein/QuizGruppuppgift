@@ -121,14 +121,13 @@
 			isa = PBXGroup;
 			children = (
 				6F58A7FA2B8CCD68001D4662 /* StartView.swift */,
-				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
 				7C7F200E2B90953B00E56520 /* GameView.swift */,
-				7C7F20102B90957400E56520 /* QuestionView.swift */,
 				DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */,
+				7C7F20102B90957400E56520 /* QuestionView.swift */,
 				7C7F20122B9095DA00E56520 /* AnswerView.swift */,
-				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				7C7F20142B90967700E56520 /* FinishView.swift */,
-				7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */,
+				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
+				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				909F8DFD2B9F6B80009A7F9F /* ProgressView.swift */,
 			);
 			path = Views;
@@ -139,6 +138,7 @@
 			children = (
 				7C0839712BA1DCDD0011B4AB /* hotpotato_1.gif */,
 				6F29BC372B9F4ECC00AF6FD6 /* hotpotatologo.gif */,
+				7C08396F2BA11A920011B4AB /* NeumorphismStyles.swift */,
 				7C7F20172B92154E00E56520 /* DateExtention.swift */,
 				7C08396D2BA1167A0011B4AB /* ViewExtention.swift */,
 				7C0839692BA087410011B4AB /* StringExtention.swift */,

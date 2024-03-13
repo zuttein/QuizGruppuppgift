@@ -13,20 +13,12 @@ struct ColorfulBackground<S: Shape>: View {
 
     var body: some View {
         ZStack {
-            if isHighlighted {
-                shape
-                    .fill(Color.green)
-                    .overlay(shape.stroke(LinearGradient(Color.black), lineWidth: 4))
-                    .shadow(color: Color.darkShadow, radius: 5, x: 5, y: 5)
-                    .shadow(color: Color.lightShadow, radius: 5, x: -5, y: -5)
-                
-            } else {
-                shape
-                    .fill(Color.red)
-                    .overlay(shape.stroke(LinearGradient(Color.lightShadow, Color.darkShadow), lineWidth: 4))
-                    .shadow(color: Color.darkShadow, radius: 5, x: -5, y: -6)
-                    .shadow(color: Color.lightShadow, radius: 5, x: 5, y: 5)
-            }
+            shape
+                .fill(isHighlighted ? Color.green : Color.red)
+                .overlay(shape.stroke(LinearGradient(Color.lightShadow, Color.darkShadow), lineWidth: 4))
+                .shadow(color: Color.darkShadow, radius: 5, x: 5, y: 5)
+                .shadow(color: Color.lightShadow, radius: 5, x: -5, y: -5)
+            
         }
     }
 }
