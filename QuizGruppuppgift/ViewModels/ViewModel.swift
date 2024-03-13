@@ -103,7 +103,7 @@ class ViewModel: ObservableObject {
                 self.showPermitionAlert.toggle()
             case .authorized:
                 
-                let view = photoToBeSaved.edgesIgnoringSafeArea(.all).scaleEffect(1/2).dynamicTypeSize(.large)
+                let view = photoToBeSaved.edgesIgnoringSafeArea(.all).dynamicTypeSize(.large)
                 let screenshot = view.takeScreenshot(size: CGSize(width: withProportions.width/2, height: withProportions.height/2))
                 UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
                 

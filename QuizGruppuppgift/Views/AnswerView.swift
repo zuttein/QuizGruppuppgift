@@ -20,7 +20,7 @@ struct AnswerView: View {
     var body: some View {
         
         ZStack {
-            Color.offwhite
+            Color.offWhite
                 .ignoresSafeArea()
             VStack {
                 Text("Show Correct Answer")
@@ -36,7 +36,7 @@ struct AnswerView: View {
                                  .padding(5)
                                  .background(
                                      RoundedRectangle(cornerRadius: 10)
-                                         .foregroundColor(Color.offwhite)
+                                        .foregroundColor(Color.offWhite)
                                          .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
                                          
                                  )
@@ -46,7 +46,7 @@ struct AnswerView: View {
                                  .padding(5)
                                  .background(
                                      RoundedRectangle(cornerRadius: 10)
-                                         .foregroundColor(Color.offwhite)
+                                         .foregroundColor(Color.offWhite)
                                          .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
                                  )
                              
@@ -57,7 +57,7 @@ struct AnswerView: View {
                              
 
                          }
-                         .listRowBackground(Color.offwhite)
+                         .listRowBackground(Color.offWhite)
                                                 
                      }
                 .scrollContentBackground(.hidden)
@@ -89,7 +89,7 @@ struct AnswerView: View {
                         .frame(width: 150, height: 40)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
+                                .foregroundColor(Color.offWhite)
                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                         )
                 }

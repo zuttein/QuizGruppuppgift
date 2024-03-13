@@ -28,10 +28,15 @@ struct PlayerSetupView: View {
     var body: some View {
         ZStack{
             if dataController.showProgressBar {
-                Text("Game will start soon....")
+                
+                VStack {
+                    GifReaderView(gifName: "hotpotatologo")
+                        .frame(width: 200,height: 200)
+                    Text("Game will start soon....")
+                }
             } else {
                 ZStack{
-                    Color.offwhite
+                    Color.offWhite
                         .ignoresSafeArea()
                     VStack{
                         Text(header)
@@ -61,7 +66,7 @@ struct PlayerSetupView: View {
                                 .padding()
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.offwhite)
+                                        .foregroundColor(Color.offWhite)
                                         .shadow(color: Color.black.opacity(1.0), radius: 5, x: 0, y: 2)
                                 )
                                 
@@ -114,7 +119,7 @@ struct PlayerSetupView: View {
                                     .frame(width: 150, height: 40)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
+                                            .foregroundColor(Color.offWhite)
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                     )
                             }
@@ -126,7 +131,7 @@ struct PlayerSetupView: View {
                                     .frame(width: 150, height: 40)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
+                                            .foregroundColor(Color.offWhite)
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                     )                    }
                             

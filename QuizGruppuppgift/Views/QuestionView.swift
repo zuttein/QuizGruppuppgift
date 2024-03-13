@@ -19,7 +19,7 @@ import SwiftUI
         
         var body: some View {
             ZStack {
-                Color(.offwhite).ignoresSafeArea()
+                Color.offWhite.ignoresSafeArea()
                 
                 VStack(spacing: 10) {
                     Text("Question \(dataController.numberOfQuestions - dataController.questions.count + 1)/\(dataController.numberOfQuestions)")
@@ -64,7 +64,7 @@ import SwiftUI
                         }
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
+                                .foregroundColor(Color.offWhite)
                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                         )
                         .padding(.bottom, 50)
@@ -73,10 +73,10 @@ import SwiftUI
                         
                         HStack(spacing: 20) {
                             
-                            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
+                            LazyVGrid(columns: [GridItem(.flexible(), spacing: 5), GridItem(.flexible(), spacing: 5)], spacing: 10) {
                                 
                                 ForEach(viewModel.players, id: \.id) { player in
-                                    VStack {
+                                    HStack(spacing:10) {
                                         Text(player.name)
                                             .multilineTextAlignment(.leading)
                                         Circle()
@@ -90,7 +90,8 @@ import SwiftUI
                                     }.onTapGesture {
                                         player.answer?.toggle()
                                     }
-                                    .padding(30)
+                                    .padding(5)
+                                    .modifier(NeumorphismModifier())
                                     
                                    
                                 }
@@ -98,7 +99,7 @@ import SwiftUI
                         }/*.padding(20)*/
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offwhite)
+                                .foregroundColor(Color.offWhite)
                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                         )
                         
@@ -120,7 +121,7 @@ import SwiftUI
                                     .frame(width: 150, height: 40)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.offwhite)
+                                            .foregroundColor(Color.offWhite)
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                     )
                             }

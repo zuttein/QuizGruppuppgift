@@ -41,7 +41,7 @@ extension LinearGradient {
 struct NeumorphismModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding()
+            
             .background(Color.offWhite)
             .cornerRadius(10)
             .shadow(color: Color.lightShadow,
@@ -54,9 +54,9 @@ struct NeumorphismModifier: ViewModifier {
 struct InnerNeumorphismModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding()
+            
             .background(Color.offWhite)
-            .cornerRadius(10)
+            .cornerRadius(30)
             .overlay(
                 Rectangle()
                     .stroke(Color.offWhite, lineWidth: 5)
@@ -65,7 +65,8 @@ struct InnerNeumorphismModifier: ViewModifier {
                     .shadow(color: Color.lightShadow,
                             radius: 5, x: -2, y: -2)
                     .clipShape(
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 30)
+                            
             )
         )
     }
