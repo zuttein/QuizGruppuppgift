@@ -27,10 +27,11 @@ struct PlayerSetupView: View {
     
     var body: some View {
         ZStack{
+            Color.offWhite
             if dataController.showProgressBar {
                 
                 VStack {
-                    GifReaderView(gifName: "hotpotatologo")
+                    GifReaderView(gifName: "hotpotato_1")
                         .frame(width: 200,height: 200)
                     Text("Game will start soon....")
                 }
