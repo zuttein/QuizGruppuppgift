@@ -17,7 +17,7 @@ struct StartView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.offwhite
+                Color.offWhite
                     .ignoresSafeArea()
 
                 VStack {

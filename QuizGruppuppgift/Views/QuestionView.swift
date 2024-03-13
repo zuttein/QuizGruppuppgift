@@ -40,8 +40,11 @@ import SwiftUI
                                 .font(.title2)
                                 .multilineTextAlignment(.leading)
                             Circle()
-                                .fill(.green)
-                                .frame(width: 25, height: 25)
+                                .fill(.clear)
+                                .frame(width: 30, height: 30)
+                                .background(
+                                    ColorfulBackground(isHighlighted: true, shape: Circle())
+                                )
                             
                             
                             Text("FALSE")
@@ -51,8 +54,11 @@ import SwiftUI
                                 .multilineTextAlignment(.leading)
                             
                             Circle()
-                                .fill(.red)
-                                .frame(width: 25, height: 25)
+                                .fill(.clear)
+                                .frame(width: 30, height: 30)
+                                .background(
+                                    ColorfulBackground(isHighlighted: false, shape: Circle())
+                                )
                             
                             
                         }
@@ -74,8 +80,11 @@ import SwiftUI
                                         Text(player.name)
                                             .multilineTextAlignment(.leading)
                                         Circle()
-                                            .fill(player.answer! ? .green : .red)
-                                            .frame(width: 25, height: 25)
+                                            .fill(.clear)
+                                            .frame(width: 30, height: 30)
+                                            .background(
+                                                ColorfulBackground(isHighlighted: player.answer!, shape: Circle())
+                                            )
                                         
                                        
                                     }.onTapGesture {
