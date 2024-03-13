@@ -35,9 +35,9 @@ class ViewModel: ObservableObject {
 
    
     
-    func gameToSave() {
+    func gameToSave(category: String) {
         
-        currentGame = Game(date: Date(), players: [], category: "Any Category")
+        currentGame = Game(date: Date(), players: [], category: category)
         
         currentGame.players.append(contentsOf: players)
         
