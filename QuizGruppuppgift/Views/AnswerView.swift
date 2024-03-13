@@ -69,13 +69,13 @@ struct AnswerView: View {
                 Button(action: {
                 
                     if dataController.questions.isEmpty {
-                        saveGame()
+                        saveGame(category: dataController.categorySelection)
                         viewModel.showFinishV()
                         
                     } else {
                         dataController.questions.remove(at: 0)
                         if dataController.questions.isEmpty {
-                            saveGame()
+                            saveGame(category: dataController.categorySelection)
                             viewModel.showFinishV()
                         } else {
                             viewModel.showQuestionV()
@@ -98,9 +98,9 @@ struct AnswerView: View {
         }
     }
     
-    func saveGame(){
+    func saveGame(category: String){
         
-        viewModel.gameToSave()
+        viewModel.gameToSave(category: category)
         
         modelContext.insert(viewModel.currentGame)
 

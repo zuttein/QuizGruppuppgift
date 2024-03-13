@@ -107,7 +107,11 @@ struct StartView: View {
                     HStack(spacing:30) {
                         NavigationLink(destination: GameView(viewModel: viewModel, dataController: dataController)
                             .navigationBarBackButtonHidden(true)
-                            
+                                       //TODO: Fixa så att koden nedan körs och förifyller spelare inför Player Setup view.
+                            .onTapGesture{
+                                viewModel.addPlayers(number: viewModel.selectionNumberOfPlayers)
+                                print(viewModel.players)
+                            }
                         ) {
                             Text("Continue")
                                 .font(.system(size: 16, weight: .bold))

@@ -61,6 +61,7 @@ struct PlayerSetupView: View {
                                         } else {
                                             viewModel.players.append(Player(name: newValue, score: 0, answer: false))
                                         }
+
                                     }
                                 ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -66,11 +66,20 @@ struct ScoreboardView: View {
                 List {
                     ForEach(games) { game in
                         VStack(alignment: .leading) {
-                            Text("Timestamp: \(game.date.extractDate(to: .dateAndHour))")
-                            Text("Category: \(game.category)")
-                            
+                            Text("\(game.date.extractDate(to: .dateAndHour))")
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            HStack {
+                                Text("\(game.category)")
+                                    .italic()
+                                Spacer()
+                                Text("Score")
+                            } 
                             ForEach(game.players, id: \.self) { player in
-                                Text("Player Name: \(player.name) - Score: \(player.score)")
+                                HStack{
+                                    Text("\(player.name)")
+                                    Spacer()
+                                    Text("\(player.score)")
+                                }
                             }
                         }.swipeActions {
                             Button("Delete", systemImage: "trash", role: .destructive) {
