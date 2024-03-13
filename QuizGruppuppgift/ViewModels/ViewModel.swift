@@ -29,9 +29,9 @@ class ViewModel: ObservableObject {
     @Published var gameEnded = false
    
     
-    func gameToSave() {
+    func gameToSave(category: String) {
         
-        currentGame = Game(date: Date(), players: [], category: "Any Category")
+        currentGame = Game(date: Date(), players: [], category: category)
         
         currentGame.players.append(contentsOf: players)
         
@@ -49,9 +49,17 @@ class ViewModel: ObservableObject {
         currentGame.players.append(Player(name: name, score: 0, answer: true))
     }
     
+    func addPlayers(number: Int) {
+        for index in 0..<number {
+            addPlayer(name: "Player \(index + 1)")
+        }
+    }
+    
     func checkAnswer(){
         for player in players {
-            if player.answer == (currentQuestion?.answer.lowercased() == "true") {
+
+            if player.answer == (currentQuestion!.answer.lowercased() == "true") {
+
                 player.score += 1
             }
             player.answer = true
