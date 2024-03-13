@@ -103,7 +103,8 @@ struct AnswerView: View {
         viewModel.gameToSave(category: category)
         
         modelContext.insert(viewModel.currentGame)
-        sleep(2)
+
+        
         withAnimation {
             viewModel.gameEnded.toggle()
         }
