@@ -8,6 +8,8 @@
 import Foundation
 import CoreData
 import SwiftUI
+import Photos
+
 
 class ViewModel: ObservableObject {
     
@@ -25,14 +27,6 @@ class ViewModel: ObservableObject {
     @Published var currentGame: Game = Game(date: Date(), players: [])
     
     @Published var gameEnded = false
-    
-    var maxScore: Int {
-            // Calculate the maximum achievable score based on your quiz setup
-            // Replace this with your logic
-            return 50 // Example value, replace it with your actual max score
-        }
-    
-
    
     
     func gameToSave() {
@@ -57,29 +51,13 @@ class ViewModel: ObservableObject {
     
     func checkAnswer(){
         for player in players {
-            if player.answer == (currentQuestion?.answer == "true") {
+            if player.answer == (currentQuestion?.answer.lowercased() == "true") {
                 player.score += 1
             }
             player.answer = true
         }
         
-        
-        getNextQuestion()
         showAnswerV()
-        
-    }
-    
-    
-    func getNextQuestion(){
-       
-    
-        
-        /*guard dataController.questions.isEmpty else {
-            showFinishView()
-            return
-        }*/
-        
-        
         
     }
     
@@ -109,6 +87,42 @@ class ViewModel: ObservableObject {
         showQuestionView = false
         showAnswerView = false
         showFinishView = true
+    }
+    
+    
+    @Published var showPermitionAlert = false
+    
+    func checkPermition<Media:View>(photoToBeSaved: Media, withProportions: CGSize = CGSize(width: 1080, height: 1350)){
+    PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+        DispatchQueue.main.async {
+            switch status {
+            case .notDetermined:
+                print("notDetermined")
+                self.checkPermition(photoToBeSaved: photoToBeSaved, withProportions: withProportions)
+            case .restricted, .denied:
+                self.showPermitionAlert.toggle()
+            case .authorized:
+                
+                let view = photoToBeSaved.edgesIgnoringSafeArea(.all).scaleEffect(1/2).dynamicTypeSize(.large)
+                let screenshot = view.takeScreenshot(size: CGSize(width: withProportions.width/2, height: withProportions.height/2))
+                UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+                
+            case .limited:
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+}
+    
+    func gotoAppPrivacySettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(url) else {
+                  assertionFailure("Not able to open App privacy settings")
+                  return
+              }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
 }
