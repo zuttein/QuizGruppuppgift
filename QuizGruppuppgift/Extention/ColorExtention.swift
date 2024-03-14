@@ -11,7 +11,6 @@ extension Color {
     static let offWhite : Color = Color(hex: 0xf2f2f7)
     static let darkShadow : Color = Color(hex: 0x616163)
     static let lightShadow : Color = Color(hex: 0xffffff)
-   
 
     
     init(red: Int, green: Int, blue: Int) {
