@@ -13,7 +13,6 @@ import Photos
 
 class ViewModel: ObservableObject {
     
-    
     @Published var playerSetUpView = true
     @Published var showQuestionView = false
     @Published var showAnswerView = false

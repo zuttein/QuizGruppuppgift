@@ -22,8 +22,11 @@ struct GameView: View {
         } else if viewModel.showAnswerView {
             AnswerView(viewModel: viewModel, dataController: dataController)
         } else if viewModel.showFinishView {
+            
             FinishView(game: viewModel.currentGame)
+            
         }
+        
     }
     
     // only when game ends...

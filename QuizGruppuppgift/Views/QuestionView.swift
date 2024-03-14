@@ -45,6 +45,7 @@ import SwiftUI
                     
                     VStack {
                         HStack  {
+                            
                             PlayerName(name: "True", isOn: .constant(true))
                             
                             PlayerName(name: "False", isOn: .constant(false))
@@ -73,6 +74,8 @@ import SwiftUI
                                     ))
                                     .onTapGesture {
                                         player.answer?.toggle()
+                                        SoundManager.instance.playSound (sound: .buttonpop)
+
                                     }
                                     .padding(.horizontal,10)
                                     .modifier(NeumorphismModifier())

@@ -72,11 +72,15 @@ struct AnswerView: View {
                         saveGame(category: dataController.categorySelection)
                         viewModel.showFinishV()
                         
+                        
                     } else {
                         dataController.questions.remove(at: 0)
                         if dataController.questions.isEmpty {
+                            
                             saveGame(category: dataController.categorySelection)
                             viewModel.showFinishV()
+                            SoundManager.instance.playSound(sound: .gamefinish)
+
                         } else {
                             viewModel.showQuestionV()
                         }

@@ -15,8 +15,10 @@ struct FinishView: View {
     var body: some View {
         ZStack {
             Color.offWhite.ignoresSafeArea()
+            
             VStack{
                 FinishCard(game: game)
+                
                     .frame(width: 337.5, height: 540)
                         
                         .padding(.top, 50)
@@ -33,6 +35,7 @@ struct FinishView: View {
                 }
                     Button {
                         viewModel.checkPermition(photoToBeSaved: FinishCard(game: game))
+                        
                     } label: {
                         Text("Share")
                             .padding(20)
@@ -51,10 +54,14 @@ struct FinishView: View {
 
 #Preview {
     do {
+        
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Game.self, Player.self,migrationPlan: nil, configurations: config)
+        
         let example: Game = Game(date: Date(), players: [])
+
         return FinishView( game: example)
+        
             .modelContainer(container)
     } catch {
         fatalError("Failed to create model container.")
@@ -68,6 +75,7 @@ struct FinishCard: View {
     var body: some View {
         VStack{
             VStack{
+                
                 Text(game.date.extractDate(to: .date))
                     
                     .font(.title)

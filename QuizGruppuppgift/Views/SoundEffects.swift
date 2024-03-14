@@ -26,7 +26,7 @@ class SoundManager {
         do {
             mediaPlayer = try AVAudioPlayer(contentsOf: url)
             mediaPlayer?.play()
-            mediaPlayer?.volume = 0.1
+            mediaPlayer?.volume = 0.6
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")
         }
@@ -51,7 +51,7 @@ class SoundManager {
             }
         }
     }
-    
+
     struct SoundsBootcamp_Previews : PreviewProvider{
         static var previews: some View{
             SoundsBootcamp()
