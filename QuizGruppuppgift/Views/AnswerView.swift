@@ -23,9 +23,15 @@ struct AnswerView: View {
             Color.offWhite
                 .ignoresSafeArea()
             VStack {
-                Text("Show Correct Answer")
-                    .font(.largeTitle)
-                    .padding(.top, 100)
+                if dataController.questions.isEmpty {
+                      Text("No more questions available")
+                          .font(.largeTitle)
+                          .padding(.top, 100)
+                  } else {
+                      Text("Answer was: \(dataController.questions[0].answer)")
+                          .font(.largeTitle)
+                          .padding(.top, 100)
+                  }
                 
                 Spacer()
                 
@@ -87,7 +93,7 @@ struct AnswerView: View {
                     }
                     
                 }) {
-                    Text(dataController.questions.isEmpty ? "Game Ended" : "Next Question")
+                    Text(dataController.questions.count <= 1 ? "End Game" : "Next Question")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color.black)
                         .frame(width: 150, height: 40)
