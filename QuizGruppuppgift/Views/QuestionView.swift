@@ -33,7 +33,7 @@ import SwiftUI
                         .modifier(InnerNeumorphismModifier())
                         .padding(.top,40)
                     Text(dataController.questions.first?.question.replaceQuotes() ?? "")
-//                    Text(Question)
+
                         .padding(.horizontal)
                         .font(.title2)
                         .frame(maxHeight: .infinity, alignment: .top)
@@ -45,9 +45,10 @@ import SwiftUI
                     
                     VStack {
                         HStack  {
-                            PlayerName(name: "True", isOn: .constant(true))
-                            PlayerName(name: "False", isOn: .constant(false))
                             
+                            PlayerName(name: "True", isOn: .constant(true))
+                            
+                            PlayerName(name: "False", isOn: .constant(false))
                             
                         }
                         .frame(width: 300, height: 60)
@@ -73,6 +74,8 @@ import SwiftUI
                                     ))
                                     .onTapGesture {
                                         player.answer?.toggle()
+                                        SoundManager.instance.playSound (sound: .buttonpop)
+
                                     }
                                     .padding(.horizontal,10)
                                     .modifier(NeumorphismModifier())
@@ -128,7 +131,9 @@ import SwiftUI
 struct PlayerName: View {
     var name: String
     @Binding var isOn: Bool
+    
     var body: some View {
+        
         HStack(spacing: 10) {
             Text(name)
                 

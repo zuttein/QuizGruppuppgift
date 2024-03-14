@@ -13,7 +13,6 @@ import Photos
 
 class ViewModel: ObservableObject {
     
-    
     @Published var playerSetUpView = true
     @Published var showQuestionView = false
     @Published var showAnswerView = false
@@ -71,14 +70,19 @@ class ViewModel: ObservableObject {
     
     func showSetUpPlayerV() {
         playerSetUpView = true
+        SoundManager.instance.playSound (sound: .swipe)
+
         showQuestionView = false
         showAnswerView = false
         showFinishView = false
+
     }
     
     func showQuestionV(){
         playerSetUpView = false
         showQuestionView = true
+        SoundManager.instance.playSound (sound: .swipe)
+
         showAnswerView = false
         showFinishView = false
     }
@@ -87,6 +91,8 @@ class ViewModel: ObservableObject {
         playerSetUpView = false
         showQuestionView = false
         showAnswerView = true
+        SoundManager.instance.playSound (sound: .swipe)
+
         showFinishView = false
     }
     
@@ -95,6 +101,8 @@ class ViewModel: ObservableObject {
         showQuestionView = false
         showAnswerView = false
         showFinishView = true
+        SoundManager.instance.playSound (sound: .swipe)
+
     }
     
     
