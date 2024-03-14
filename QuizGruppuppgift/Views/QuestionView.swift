@@ -32,13 +32,13 @@ import SwiftUI
                         .frame(width: 300, height: 60)
                         .modifier(InnerNeumorphismModifier())
                         .padding(.top,40)
-                    //Text(dataController.questions.first?.question.replaceQuotes() ?? "")
-                    Text(Question)
+                    Text(dataController.questions.first?.question.replaceQuotes() ?? "")
+//                    Text(Question)
                         .padding(.horizontal)
                         .font(.title2)
                         .frame(maxHeight: .infinity, alignment: .top)
                         .padding(20)
-                        .frame(width: 300,height: 200,alignment: .topLeading)
+                        .frame(width: 300,alignment: .topLeading)
                         .modifier(InnerNeumorphismModifier())
                         
                     

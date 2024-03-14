@@ -28,7 +28,7 @@ extension String {
             .replaceAll(of: "&#039;", with: "\'")
             .replaceAll(of: "&deg;", with: "°")
             .replaceAll(of: "&rsquo;", with: "\'")
-       
+            .replaceAll(of: "&ocirc;", with: "Ô")
     }
     
 }
