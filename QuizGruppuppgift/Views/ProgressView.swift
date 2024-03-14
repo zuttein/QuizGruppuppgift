@@ -20,11 +20,11 @@ struct ProgressView: View {
                 
                 Rectangle()
                     .frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.green)
             }
             .cornerRadius(45.0)
         }
-        .frame(width: 100, height: 10)
+        .frame(width: 100, height: 30)
 
     }
 }

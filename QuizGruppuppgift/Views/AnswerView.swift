@@ -60,6 +60,9 @@ struct AnswerView: View {
                              //lägger till progressbar för att se progress brevid score
                              ProgressView(value: Float(player.score) / Float(dataController.numberOfQuestions))
                                                         .frame(width: 100, height: 10)
+                                                        .padding(10)
+                             
+                             
                              
 
                          }
