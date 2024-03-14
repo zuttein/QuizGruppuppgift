@@ -34,6 +34,10 @@
 		82AD60452B8E309E008D5807 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AD60442B8E309E008D5807 /* ViewModel.swift */; };
 		909F8DFE2B9F6B80009A7F9F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8DFD2B9F6B80009A7F9F /* ProgressView.swift */; };
 		DF3EBCBC2B90680000398AE6 /* PlayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */; };
+		DF94FDB92BA2F94900B41697 /* SoundEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF94FDB82BA2F94900B41697 /* SoundEffects.swift */; };
+		DF94FDBD2BA3045700B41697 /* gamefinish.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF94FDBC2BA3045700B41697 /* gamefinish.mp3 */; };
+		DF94FDBF2BA3045F00B41697 /* buttonpop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF94FDBE2BA3045F00B41697 /* buttonpop.mp3 */; };
+		DF94FDC12BA304CD00B41697 /* swipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF94FDC02BA304CD00B41697 /* swipe.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,10 @@
 		82AD60442B8E309E008D5807 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		909F8DFD2B9F6B80009A7F9F /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		DF3EBCBB2B90680000398AE6 /* PlayerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupView.swift; sourceTree = "<group>"; };
+		DF94FDB82BA2F94900B41697 /* SoundEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffects.swift; sourceTree = "<group>"; };
+		DF94FDBC2BA3045700B41697 /* gamefinish.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamefinish.mp3; sourceTree = "<group>"; };
+		DF94FDBE2BA3045F00B41697 /* buttonpop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpop.mp3; sourceTree = "<group>"; };
+		DF94FDC02BA304CD00B41697 /* swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 		6F58A7FE2B8CCD6A001D4662 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				DF94FDBB2BA3041D00B41697 /* Sounds */,
 				6F58A7FC2B8CCD6A001D4662 /* Assets.xcassets */,
 				6F58A7FF2B8CCD6A001D4662 /* Preview Assets.xcassets */,
 			);
@@ -129,6 +138,7 @@
 				82AD603D2B8E2A85008D5807 /* ScoreboardView.swift */,
 				6F29BC232B988C4500AF6FD6 /* GifReaderView.swift */,
 				909F8DFD2B9F6B80009A7F9F /* ProgressView.swift */,
+				DF94FDB82BA2F94900B41697 /* SoundEffects.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +184,16 @@
 				7CF7CBB72B8F689D002FB912 /* DataController.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DF94FDBB2BA3041D00B41697 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				DF94FDC02BA304CD00B41697 /* swipe.mp3 */,
+				DF94FDBE2BA3045F00B41697 /* buttonpop.mp3 */,
+				DF94FDBC2BA3045700B41697 /* gamefinish.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +254,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF94FDC12BA304CD00B41697 /* swipe.mp3 in Resources */,
 				6F58A8002B8CCD6A001D4662 /* Preview Assets.xcassets in Resources */,
+				DF94FDBD2BA3045700B41697 /* gamefinish.mp3 in Resources */,
 				7C0839722BA1DCDE0011B4AB /* hotpotato_1.gif in Resources */,
 				6F58A7FD2B8CCD6A001D4662 /* Assets.xcassets in Resources */,
+				DF94FDBF2BA3045F00B41697 /* buttonpop.mp3 in Resources */,
 				6F29BC382B9F4ECC00AF6FD6 /* hotpotatologo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +285,7 @@
 				7CF7CBB82B8F689D002FB912 /* DataController.swift in Sources */,
 				82AD603E2B8E2A85008D5807 /* ScoreboardView.swift in Sources */,
 				7CF7CBB32B8F678A002FB912 /* ApiService.swift in Sources */,
+				DF94FDB92BA2F94900B41697 /* SoundEffects.swift in Sources */,
 				82AD60452B8E309E008D5807 /* ViewModel.swift in Sources */,
 				7C7F20112B90957400E56520 /* QuestionView.swift in Sources */,
 				7CF7CBAE2B8F670A002FB912 /* Question.swift in Sources */,

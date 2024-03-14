@@ -100,8 +100,12 @@ class DataController: ObservableObject {
         do{
             guard let response: APIResponse = try await apiService.getJSON() else {return}
             print(response.response_code)
+            SoundManager.instance.playSound (sound: .swipe)
+
             if response.response_code == 1 {
+
                 sleep(5)
+
                 await fetchData(worksWithDifficulty: false)
                 
             } else {

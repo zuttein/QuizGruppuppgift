@@ -124,7 +124,8 @@ struct PlayerSetupView: View {
                             }
                             .buttonStyle(NeumorphismButtonStyle())
                             
-                            NavigationLink(destination: StartView()) {
+                            NavigationLink(destination: StartView())
+                            {
                                 Text("Back")
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color.black)
