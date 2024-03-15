@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartView: View {
+    var soundManager = SoundManager()
     
     @ObservedObject var dataController = DataController()
     @ObservedObject var viewModel = ViewModel()
@@ -144,7 +145,12 @@ struct StartView: View {
             .background(Color.offWhite)
                 
             }
+        .onAppear(){
+            soundManager.playSound(sound: .swipe)
+            
+        }
     }
+        
         }
 
 
