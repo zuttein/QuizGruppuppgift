@@ -25,13 +25,15 @@ struct AnswerView: View {
             VStack {
                 if dataController.questions.isEmpty {
                       Text("No more questions available")
+                    
                           .font(.largeTitle)
-                          .padding(.top, 100)
+                          .frame(width: 300, height: 100)
+                          .modifier(InnerNeumorphismModifier())
                   } else {
                       Text("Answer was: \(dataController.questions[0].answer)")
                           .font(.largeTitle)
-                          .padding(.top, 100)
-                  }
+                          .frame(width: 300, height: 100)
+                          .modifier(InnerNeumorphismModifier())                  }
                 
                 Spacer()
                 
@@ -100,12 +102,9 @@ struct AnswerView: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(Color.black)
                         .frame(width: 150, height: 40)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color.offWhite)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        )
-                }
+
+                }.buttonStyle(NeumorphismButtonStyle())
+
             }
             
         }
@@ -126,6 +125,6 @@ struct AnswerView: View {
 }
 
     
-//#Preview {
-//    AnswerView()
-//}
+#Preview {
+    AnswerView(viewModel: ViewModel(), dataController: DataController())
+}

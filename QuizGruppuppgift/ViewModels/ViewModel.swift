@@ -17,7 +17,8 @@ class ViewModel: ObservableObject {
     @Published var showQuestionView = false
     @Published var showAnswerView = false
     @Published var showFinishView = false
-    
+    @Published var showStartView = false
+
     
     @Published var players: [Player] = []
     @Published var selectionNumberOfPlayers = 1
@@ -67,6 +68,16 @@ class ViewModel: ObservableObject {
         showAnswerV()
         
     }
+    
+    func showStartV() {
+           playerSetUpView = false
+           showStartView = true
+           SoundManager.instance.playSound (sound: .swipe)
+           showQuestionView = false
+           showAnswerView = false
+           showFinishView = false
+
+       }
     
     func showSetUpPlayerV() {
         playerSetUpView = true
