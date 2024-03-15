@@ -15,6 +15,7 @@ struct QuizGruppuppgiftApp: App {
     
     init() {
         do {
+            //Instance of modelcontainer, SwiftData
             container = try ModelContainer(for: Game.self, Player.self, migrationPlan: nil)
         } catch {
             fatalError("Failed to initialize modelcontainer")
@@ -24,9 +25,7 @@ struct QuizGruppuppgiftApp: App {
     var body: some Scene {
         WindowGroup {
         StartView()
-//            ScoreboardView()
-//  GameView()
-                
+
         }.modelContainer(container)
         
     }

@@ -28,9 +28,9 @@ class ViewModel: ObservableObject {
     
     @Published var gameEnded = false
    
-    
+    //Function to save a game with a category
     func gameToSave(category: String) {
-        
+        //Creates a new instance of Game
         currentGame = Game(date: Date(), players: [], category: category)
         
         currentGame.players.append(contentsOf: players)
@@ -54,9 +54,10 @@ class ViewModel: ObservableObject {
             addPlayer(name: "Player \(index + 1)")
         }
     }
-    
+    //Checks for correct answer on every player
     func checkAnswer(){
         for player in players {
+            //If the players answer is the same as the current questions answer, give +1 score
 
             if player.answer == (currentQuestion!.answer.lowercased() == "true") {
 
@@ -69,6 +70,7 @@ class ViewModel: ObservableObject {
         
     }
     
+    //Functions to show every view and play sound
     func showStartV() {
            playerSetUpView = false
            showStartView = true
@@ -116,7 +118,7 @@ class ViewModel: ObservableObject {
 
     }
     
-    
+    //Function save to gallery
     @Published var showPermitionAlert = false
     
     func checkPermition<Media:View>(photoToBeSaved: Media, withProportions: CGSize = CGSize(width: 1080, height: 1350)){

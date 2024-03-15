@@ -9,6 +9,7 @@ import Foundation
 
 
 class DataController: ObservableObject {
+    // Singleton instance of DataController
     static let shared = DataController()
     
     @Published var numberOfQuestions: Int = 10
@@ -21,8 +22,7 @@ class DataController: ObservableObject {
     
     @Published var showProgressBar: Bool = true
     
-    // Fetch questions from API
-    
+    // Function to get the category ID based on the selected category name
     func getCategory() -> Int {
         var categoryId: Int = 0
         switch categorySelection {
@@ -80,7 +80,7 @@ class DataController: ObservableObject {
         }
         return categoryId
     }
-    
+    // Function to get the API URL based on selected options
     func getApiURL(worksWithDifficulty: Bool = true) -> String {
         if worksWithDifficulty {
             return "https://opentdb.com/api.php?amount=\(numberOfQuestions)&category=\(getCategory())&difficulty=\(difficultySelection.lowercased())&type=boolean"
@@ -89,7 +89,7 @@ class DataController: ObservableObject {
         }
     }
     
-   
+    // Function to fetch data from API
     @MainActor
     func fetchData(worksWithDifficulty: Bool = true) async {
         showProgressBar = true
