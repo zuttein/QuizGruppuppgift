@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct FinishView: View {
-    
     @Bindable var game: Game
     @ObservedObject var viewModel: ViewModel = ViewModel()
     var body: some View {
@@ -26,6 +25,7 @@ struct FinishView: View {
                     NavigationLink(destination: StartView()
                         .navigationBarBackButtonHidden(true))
                     {
+                        
                         Text("Done ")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.black)
