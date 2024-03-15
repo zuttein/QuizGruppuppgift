@@ -20,7 +20,7 @@ class SoundManager {
         case gamefinish
     }
     
-    
+    //Function to play Sounds
     func playSound(sound: SoundOption) {
         guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
         do {
@@ -32,31 +32,31 @@ class SoundManager {
         }
     }
     
-    
-    
-    struct SoundsBootcamp: View{
-        var body: some View {
-            VStack(spacing: 40) {
-                Button("Play sound 1"){
-                    SoundManager.instance.playSound (sound: .buttonpop)
-                }
-                Button ("Play sound 2") {
-                    SoundManager.instance.playSound(sound: .swipe)
-                    
-                }
-                Button ("Play sound 3") {
-                    SoundManager.instance.playSound(sound: .gamefinish)
-                    
-                }
-            }
-        }
-    }
-
-    struct SoundsBootcamp_Previews : PreviewProvider{
-        static var previews: some View{
-            SoundsBootcamp()
-        }
-    }
 }
+    
+//    struct SoundsBootcamp: View{
+//        var body: some View {
+//            VStack(spacing: 40) {
+//                Button("Play sound 1"){
+//                    SoundManager.instance.playSound (sound: .buttonpop)
+//                }
+//                Button ("Play sound 2") {
+//                    SoundManager.instance.playSound(sound: .swipe)
+//                    
+//                }
+//                Button ("Play sound 3") {
+//                    SoundManager.instance.playSound(sound: .gamefinish)
+//                    
+//                }
+//            }
+//        }
+//    }
+
+//    struct SoundsBootcamp_Previews : PreviewProvider{
+//        static var previews: some View{
+//            SoundsBootcamp()
+//        }
+//    }
+//}
 
 

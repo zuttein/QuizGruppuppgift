@@ -22,7 +22,7 @@ extension String {
         return self
       }
     }
-    
+    //Replacing non working symbols in questions to the correct symbol
     public func replaceQuotes() -> String {
         return self.replaceAll(of: "&quot;", with: "\"")
             .replaceAll(of: "&#039;", with: "\'")
